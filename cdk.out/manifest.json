@@ -1,0 +1,346 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "WordpressEc2RdsStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "WordpressEc2RdsStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "WordpressEc2RdsStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://943240599753/eu-west-3",
+      "properties": {
+        "templateFile": "WordpressEc2RdsStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::943240599753:role/cdk-hnb659fds-deploy-role-943240599753-eu-west-3",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::943240599753:role/cdk-hnb659fds-cfn-exec-role-943240599753-eu-west-3",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-943240599753-eu-west-3/14869402d5c383eadbe0ec0a187a4d6b8dbff7db3ef108d21f73109a50768ee4.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "WordpressEc2RdsStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::943240599753:role/cdk-hnb659fds-lookup-role-943240599753-eu-west-3",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "WordpressEc2RdsStack.assets"
+      ],
+      "metadata": {
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1SubnetF9B369DE"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTable28E9860B"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTableAssociationF23CF092"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1DefaultRoute31C5614D"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2SubnetA82AC512"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTable1D9A4A73"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTableAssociation259D9055"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2DefaultRouteC1093D1B"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1SubnetB20EEB27"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1RouteTable52808403"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1RouteTableAssociationD104E8D8"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2Subnet385253A3"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2RouteTableF63EAE5E"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2RouteTableAssociation55B98F2E"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcIGW6F5DA0F3"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcVPCGWD72E1A62"
+          }
+        ],
+        "/WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/RestrictDefaultSecurityGroupCustomResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVPCwordpressec2rdsdevvpcRestrictDefaultSecurityGroupCustomResource4E944CE2"
+          }
+        ],
+        "/WordpressEc2RdsStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+          }
+        ],
+        "/WordpressEc2RdsStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E"
+          }
+        ],
+        "/WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-rds-ingress/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySQLRDSInstancewordpressec2rdsdevrdsingress12C0052D"
+          }
+        ],
+        "/WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySQLCredentialsSecret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecret67045F35"
+          }
+        ],
+        "/WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySQLCredentialsSecret/Attachment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecretAttachmentE774E811"
+          }
+        ],
+        "/WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySqlRDSInstance/SubnetGroup/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySQLRDSInstancewordpressec2rdsdevMySqlRDSInstanceSubnetGroupAEE59408"
+          }
+        ],
+        "/WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySqlRDSInstance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySQLRDSInstancewordpressec2rdsdevMySqlRDSInstance5081F671"
+          }
+        ],
+        "/WordpressEc2RdsStack/MySQLRDSInstance/RDSInstanceSecret/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MySQLRDSInstanceRDSInstanceSecret0BE41E8B"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressALBwordpressec2rdsdevalbE7F2C321"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb/SecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressALBwordpressec2rdsdevalbSecurityGroup08E2C3D5"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb/wordpress-ec2-rds-dev-alb-listener/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressALBwordpressec2rdsdevalbwordpressec2rdsdevalblistener50E61E9F"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-target-group": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "When creating an empty TargetGroup, you should specify a 'targetType' (this warning may become an error in the future). [ack: @aws-cdk/aws-elbv2:targetGroupSpecifyTargetTypeForEmptyTargetGroup]",
+            "trace": [
+              "Annotations.addMessage (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addWarningV2 (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
+              "ApplicationTargetGroup.validateTargetGroup (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\aws-elasticloadbalancingv2\\lib\\shared\\base-target-group.js:1:4578)",
+              "ApplicationTargetGroup.validateTargetGroup (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\aws-elasticloadbalancingv2\\lib\\alb\\application-target-group.js:1:12574)",
+              "Object.validate (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\aws-elasticloadbalancingv2\\lib\\shared\\base-target-group.js:1:3279)",
+              "Node.validate (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\constructs\\lib\\construct.js:346:30)",
+              "C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:2:3722",
+              "visit (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:255)",
+              "visit (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "visit (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "visit (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:4:334)",
+              "validateTree (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:2:3657)",
+              "synthesize (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\private\\synthesis.js:1:1561)",
+              "App.synth (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-IhFhNE\\node_modules\\aws-cdk-lib\\core\\lib\\stage.js:1:2263)",
+              "C:\\Users\\eakli\\AppData\\Local\\Temp\\tmp2c5k0xel\\lib\\program.js:9855:172",
+              "Kernel._Kernel_ensureSync (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmp2c5k0xel\\lib\\program.js:10480:24)",
+              "Kernel.invoke (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmp2c5k0xel\\lib\\program.js:9855:102)",
+              "KernelHost.processRequest (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmp2c5k0xel\\lib\\program.js:11699:36)",
+              "KernelHost.run (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmp2c5k0xel\\lib\\program.js:11659:22)",
+              "Immediate._onImmediate (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmp2c5k0xel\\lib\\program.js:11660:46)",
+              "process.processImmediate (node:internal/timers:478:21)"
+            ]
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-target-group/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressALBwordpressec2rdsdevtargetgroupBD0665DC"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb-dns-name": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressALBwordpressec2rdsdevalbdnsname4CB6F7C3"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressCloudFront/CFDistribution": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressCloudFrontCFDistribution472ED300"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressASG/WordpressASG-instance-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressASGWordpressASGinstancerole6038B052"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressASG/wordpress-instances-sg/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressASGwordpressinstancessg8521EA65"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressASG/WordpressAdminSecrets/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressASGWordpressAdminSecretsC20EBF03"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressAdminSecrets/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressAdminSecrets0D48C419"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressASGRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressASGRole552F8931"
+          }
+        ],
+        "/WordpressEc2RdsStack/WordpressASGRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordpressASGRoleDefaultPolicyB35A3FCB"
+          }
+        ],
+        "/WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/wordpress-ec2-rds-dev-asg-instance-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordpressec2rdsdevasgwordpressec2rdsdevasginstancerole5D565205"
+          }
+        ],
+        "/WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/wordpress-instances-sg/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordpressec2rdsdevasgwordpressinstancessgB8A06F91"
+          }
+        ],
+        "/WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/WordpressAdminSecrets/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordpressec2rdsdevasgWordpressAdminSecrets2FC11A92"
+          }
+        ],
+        "/WordpressEc2RdsStack/ALBDnsName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ALBDnsName"
+          }
+        ],
+        "/WordpressEc2RdsStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/WordpressEc2RdsStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/WordpressEc2RdsStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "WordpressEc2RdsStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

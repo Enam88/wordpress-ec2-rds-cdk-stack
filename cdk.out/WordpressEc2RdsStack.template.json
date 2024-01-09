@@ -1,0 +1,1078 @@
+{
+ "Resources": {
+  "CustomVPCwordpressec2rdsdevvpc3E484A3D": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "172.22.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/Resource"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1SubnetF9B369DE": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-3a",
+    "CidrBlock": "172.22.0.0/22",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "wordpress-ec2-rds-dev-public-"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/Subnet"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTable28E9860B": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/RouteTable"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTableAssociationF23CF092": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTable28E9860B"
+    },
+    "SubnetId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1SubnetF9B369DE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/RouteTableAssociation"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1DefaultRoute31C5614D": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcIGW6F5DA0F3"
+    },
+    "RouteTableId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTable28E9860B"
+    }
+   },
+   "DependsOn": [
+    "CustomVPCwordpressec2rdsdevvpcVPCGWD72E1A62"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet1/DefaultRoute"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2SubnetA82AC512": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-3b",
+    "CidrBlock": "172.22.4.0/22",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "wordpress-ec2-rds-dev-public-"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/Subnet"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTable1D9A4A73": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/RouteTable"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTableAssociation259D9055": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTable1D9A4A73"
+    },
+    "SubnetId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2SubnetA82AC512"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/RouteTableAssociation"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2DefaultRouteC1093D1B": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcIGW6F5DA0F3"
+    },
+    "RouteTableId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTable1D9A4A73"
+    }
+   },
+   "DependsOn": [
+    "CustomVPCwordpressec2rdsdevvpcVPCGWD72E1A62"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-public-Subnet2/DefaultRoute"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1SubnetB20EEB27": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-3a",
+    "CidrBlock": "172.22.8.0/22",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "wordpress-ec2-rds-dev-isolated-"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1/Subnet"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1RouteTable52808403": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1/RouteTable"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1RouteTableAssociationD104E8D8": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1RouteTable52808403"
+    },
+    "SubnetId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1SubnetB20EEB27"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet1/RouteTableAssociation"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2Subnet385253A3": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "eu-west-3b",
+    "CidrBlock": "172.22.12.0/22",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "wordpress-ec2-rds-dev-isolated-"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2/Subnet"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2RouteTableF63EAE5E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2/RouteTable"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2RouteTableAssociation55B98F2E": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2RouteTableF63EAE5E"
+    },
+    "SubnetId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2Subnet385253A3"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/wordpress-ec2-rds-dev-isolated-Subnet2/RouteTableAssociation"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcIGW6F5DA0F3": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/IGW"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcVPCGWD72E1A62": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpcIGW6F5DA0F3"
+    },
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/VPCGW"
+   }
+  },
+  "CustomVPCwordpressec2rdsdevvpcRestrictDefaultSecurityGroupCustomResource4E944CE2": {
+   "Type": "Custom::VpcRestrictDefaultSG",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E",
+      "Arn"
+     ]
+    },
+    "DefaultSecurityGroupId": {
+     "Fn::GetAtt": [
+      "CustomVPCwordpressec2rdsdevvpc3E484A3D",
+      "DefaultSecurityGroup"
+     ]
+    },
+    "Account": "943240599753"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec2-rds-dev-vpc/RestrictDefaultSecurityGroupCustomResource/Default"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Effect": "Allow",
+         "Action": [
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:RevokeSecurityGroupEgress"
+         ],
+         "Resource": [
+          {
+           "Fn::Join": [
+            "",
+            [
+             "arn:aws:ec2:eu-west-3:943240599753:security-group/",
+             {
+              "Fn::GetAtt": [
+               "CustomVPCwordpressec2rdsdevvpc3E484A3D",
+               "DefaultSecurityGroup"
+              ]
+             }
+            ]
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Role"
+   }
+  },
+  "CustomVpcRestrictDefaultSGCustomResourceProviderHandlerDC833E5E": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-943240599753-eu-west-3",
+     "S3Key": "dd5711540f04e06aa955d7f4862fc04e8cdea464cb590dae91ed2976bb78098e.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs18.x",
+    "Description": "Lambda function for removing all inbound/outbound rules from the VPC default security group"
+   },
+   "DependsOn": [
+    "CustomVpcRestrictDefaultSGCustomResourceProviderRole26592FE0"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/Custom::VpcRestrictDefaultSGCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.dd5711540f04e06aa955d7f4862fc04e8cdea464cb590dae91ed2976bb78098e",
+    "aws:asset:property": "Code"
+   }
+  },
+  "MySQLRDSInstancewordpressec2rdsdevrdsingress12C0052D": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-rds-ingress",
+    "GroupName": "wordpress-ec2-rds-dev-rds-ingress-sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "CustomVPCwordpressec2rdsdevvpc3E484A3D",
+        "CidrBlock"
+       ]
+      },
+      "Description": "Allows only local resources inside VPC to access this MySQL port (default -- 3306)",
+      "FromPort": 3306,
+      "IpProtocol": "tcp",
+      "ToPort": 3306
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-rds-ingress/Resource"
+   }
+  },
+  "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecret67045F35": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Credentials to access Wordpress MYSQL Database on RDS",
+    "GenerateSecretString": {
+     "ExcludePunctuation": true,
+     "GenerateStringKey": "password",
+     "IncludeSpace": false,
+     "SecretStringTemplate": "{\"username\": \"wordpress_admin\"}"
+    },
+    "Name": "wordpress-ec2-rds-dev/rds/mysql/credentials"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySQLCredentialsSecret/Resource"
+   }
+  },
+  "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecretAttachmentE774E811": {
+   "Type": "AWS::SecretsManager::SecretTargetAttachment",
+   "Properties": {
+    "SecretId": {
+     "Ref": "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecret67045F35"
+    },
+    "TargetId": {
+     "Ref": "MySQLRDSInstancewordpressec2rdsdevMySqlRDSInstance5081F671"
+    },
+    "TargetType": "AWS::RDS::DBInstance"
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySQLCredentialsSecret/Attachment/Resource"
+   }
+  },
+  "MySQLRDSInstancewordpressec2rdsdevMySqlRDSInstanceSubnetGroupAEE59408": {
+   "Type": "AWS::RDS::DBSubnetGroup",
+   "Properties": {
+    "DBSubnetGroupDescription": "Subnet group for wordpress-ec2-rds-dev-MySqlRDSInstance database",
+    "SubnetIds": [
+     {
+      "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet1SubnetB20EEB27"
+     },
+     {
+      "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevisolatedSubnet2Subnet385253A3"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySqlRDSInstance/SubnetGroup/Default"
+   }
+  },
+  "MySQLRDSInstancewordpressec2rdsdevMySqlRDSInstance5081F671": {
+   "Type": "AWS::RDS::DBInstance",
+   "Properties": {
+    "AllocatedStorage": "100",
+    "BackupRetentionPeriod": 7,
+    "CopyTagsToSnapshot": true,
+    "DBInstanceClass": "db.t2.micro",
+    "DBSubnetGroupName": {
+     "Ref": "MySQLRDSInstancewordpressec2rdsdevMySqlRDSInstanceSubnetGroupAEE59408"
+    },
+    "DeletionProtection": true,
+    "Engine": "mysql",
+    "EngineVersion": "5.7.31",
+    "MasterUserPassword": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecret67045F35"
+       },
+       ":SecretString:password::}}"
+      ]
+     ]
+    },
+    "MasterUsername": {
+     "Fn::Join": [
+      "",
+      [
+       "{{resolve:secretsmanager:",
+       {
+        "Ref": "MySQLRDSInstancewordpressec2rdsdevMySQLCredentialsSecret67045F35"
+       },
+       ":SecretString:username::}}"
+      ]
+     ]
+    },
+    "Port": "3306",
+    "PubliclyAccessible": false,
+    "StorageType": "gp2",
+    "VPCSecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "MySQLRDSInstancewordpressec2rdsdevrdsingress12C0052D",
+       "GroupId"
+      ]
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Snapshot",
+   "DeletionPolicy": "Snapshot",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/MySQLRDSInstance/wordpress-ec2-rds-dev-MySqlRDSInstance/Resource"
+   }
+  },
+  "MySQLRDSInstanceRDSInstanceSecret0BE41E8B": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "GenerateSecretString": {
+     "GenerateStringKey": "password",
+     "SecretStringTemplate": "{\"username\": \"wordpress_admin\", \"database\": \"awesome-wp-site-db\"}"
+    },
+    "Name": "wordpress-ec2-rds-dev/rds/mysql/credentials"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/MySQLRDSInstance/RDSInstanceSecret/Resource"
+   }
+  },
+  "WordpressALBwordpressec2rdsdevalbE7F2C321": {
+   "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+   "Properties": {
+    "LoadBalancerAttributes": [
+     {
+      "Key": "deletion_protection.enabled",
+      "Value": "false"
+     }
+    ],
+    "Name": "wordpress-ec2-rds-dev-alb",
+    "Scheme": "internet-facing",
+    "SecurityGroups": [
+     {
+      "Fn::GetAtt": [
+       "WordpressALBwordpressec2rdsdevalbSecurityGroup08E2C3D5",
+       "GroupId"
+      ]
+     }
+    ],
+    "Subnets": [
+     {
+      "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1SubnetF9B369DE"
+     },
+     {
+      "Ref": "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2SubnetA82AC512"
+     }
+    ],
+    "Type": "application"
+   },
+   "DependsOn": [
+    "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1DefaultRoute31C5614D",
+    "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet1RouteTableAssociationF23CF092",
+    "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2DefaultRouteC1093D1B",
+    "CustomVPCwordpressec2rdsdevvpcwordpressec2rdsdevpublicSubnet2RouteTableAssociation259D9055"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb/Resource"
+   }
+  },
+  "WordpressALBwordpressec2rdsdevalbSecurityGroup08E2C3D5": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "Automatically created Security Group for ELB WordpressEc2RdsStackWordpressALBwordpressec2rdsdevalbB6F7DDF7",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "255.255.255.255/32",
+      "Description": "Disallow all traffic",
+      "FromPort": 252,
+      "IpProtocol": "icmp",
+      "ToPort": 86
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow from anyone on port 80",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb/SecurityGroup/Resource"
+   }
+  },
+  "WordpressALBwordpressec2rdsdevalbwordpressec2rdsdevalblistener50E61E9F": {
+   "Type": "AWS::ElasticLoadBalancingV2::Listener",
+   "Properties": {
+    "DefaultActions": [
+     {
+      "TargetGroupArn": {
+       "Ref": "WordpressALBwordpressec2rdsdevtargetgroupBD0665DC"
+      },
+      "Type": "forward"
+     }
+    ],
+    "LoadBalancerArn": {
+     "Ref": "WordpressALBwordpressec2rdsdevalbE7F2C321"
+    },
+    "Port": 80,
+    "Protocol": "HTTP"
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-alb/wordpress-ec2-rds-dev-alb-listener/Resource"
+   }
+  },
+  "WordpressALBwordpressec2rdsdevtargetgroupBD0665DC": {
+   "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+   "Properties": {
+    "Port": 80,
+    "Protocol": "HTTP",
+    "TargetGroupAttributes": [
+     {
+      "Key": "stickiness.enabled",
+      "Value": "false"
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressALB/wordpress-ec2-rds-dev-target-group/Resource"
+   }
+  },
+  "WordpressCloudFrontCFDistribution472ED300": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "DefaultCacheBehavior": {
+      "AllowedMethods": [
+       "GET",
+       "HEAD"
+      ],
+      "CachedMethods": [
+       "GET",
+       "HEAD"
+      ],
+      "Compress": true,
+      "ForwardedValues": {
+       "Cookies": {
+        "Forward": "none"
+       },
+       "QueryString": false
+      },
+      "TargetOriginId": "origin1",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "DefaultRootObject": "index.html",
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "Origins": [
+      {
+       "ConnectionAttempts": 3,
+       "ConnectionTimeout": 10,
+       "CustomOriginConfig": {
+        "HTTPPort": 80,
+        "HTTPSPort": 443,
+        "OriginKeepaliveTimeout": 5,
+        "OriginProtocolPolicy": "http-only",
+        "OriginReadTimeout": 30,
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::GetAtt": [
+         "WordpressALBwordpressec2rdsdevalbE7F2C321",
+         "DNSName"
+        ]
+       },
+       "Id": "origin1"
+      }
+     ],
+     "PriceClass": "PriceClass_100",
+     "ViewerCertificate": {
+      "CloudFrontDefaultCertificate": true
+     }
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressCloudFront/CFDistribution"
+   }
+  },
+  "WordpressASGWordpressASGinstancerole6038B052": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": [
+         "ec2.amazonaws.com",
+         "ssm.amazonaws.com"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/SecretsManagerReadWrite"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressASG/WordpressASG-instance-role/Resource"
+   }
+  },
+  "WordpressASGwordpressinstancessg8521EA65": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "WordpressEc2RdsStack/WordpressASG/wordpress-instances-sg",
+    "GroupName": "wordpress-instances-sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "CustomVPCwordpressec2rdsdevvpc3E484A3D",
+        "CidrBlock"
+       ]
+      },
+      "Description": "Allows HTTP access from resources inside our VPC (like the ALB)",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressASG/wordpress-instances-sg/Resource"
+   }
+  },
+  "WordpressASGWordpressAdminSecretsC20EBF03": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Admin credentials to access WordPress",
+    "GenerateSecretString": {
+     "GenerateStringKey": "password",
+     "SecretStringTemplate": "{\"username\": \"admin\", \"email\": \"enam.akli@laplateforme.io\"}"
+    },
+    "Name": "wordpress-ec2-rds-dev/WordpressAdminSecrets"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressASG/WordpressAdminSecrets/Resource"
+   }
+  },
+  "WordpressAdminSecrets0D48C419": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Admin credentials to access Wordpress",
+    "GenerateSecretString": {
+     "GenerateStringKey": "password",
+     "SecretStringTemplate": "{\"username\": \"admin\", \"email\": \"enam.akli@laplateforme.io\"}"
+    },
+    "Name": "wordpress-ec2-rds-dev/WordpressAdminSecrets"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressAdminSecrets/Resource"
+   }
+  },
+  "WordpressASGRole552F8931": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressASGRole/Resource"
+   }
+  },
+  "WordpressASGRoleDefaultPolicyB35A3FCB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "secretsmanager:GetSecretValue",
+       "Effect": "Allow",
+       "Resource": [
+        "wordpress-ec2-rds-dev/WordpressAdminSecrets",
+        "wordpress-ec2-rds-dev/rds/mysql/credentials"
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "WordpressASGRoleDefaultPolicyB35A3FCB",
+    "Roles": [
+     {
+      "Ref": "WordpressASGRole552F8931"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/WordpressASGRole/DefaultPolicy/Resource"
+   }
+  },
+  "wordpressec2rdsdevasgwordpressec2rdsdevasginstancerole5D565205": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": [
+         "ec2.amazonaws.com",
+         "ssm.amazonaws.com"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/AmazonSSMManagedInstanceCore"
+       ]
+      ]
+     },
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/SecretsManagerReadWrite"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/wordpress-ec2-rds-dev-asg-instance-role/Resource"
+   }
+  },
+  "wordpressec2rdsdevasgwordpressinstancessgB8A06F91": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/wordpress-instances-sg",
+    "GroupName": "wordpress-instances-sg",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "SecurityGroupIngress": [
+     {
+      "CidrIp": {
+       "Fn::GetAtt": [
+        "CustomVPCwordpressec2rdsdevvpc3E484A3D",
+        "CidrBlock"
+       ]
+      },
+      "Description": "Allows HTTP access from resources inside our VPC (like the ALB)",
+      "FromPort": 80,
+      "IpProtocol": "tcp",
+      "ToPort": 80
+     }
+    ],
+    "VpcId": {
+     "Ref": "CustomVPCwordpressec2rdsdevvpc3E484A3D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/wordpress-instances-sg/Resource"
+   }
+  },
+  "wordpressec2rdsdevasgWordpressAdminSecrets2FC11A92": {
+   "Type": "AWS::SecretsManager::Secret",
+   "Properties": {
+    "Description": "Admin credentials to access WordPress",
+    "GenerateSecretString": {
+     "GenerateStringKey": "password",
+     "SecretStringTemplate": "{\"username\": \"admin\", \"email\": \"enam.akli@laplateforme.io\"}"
+    },
+    "Name": "wordpress-ec2-rds-dev/WordpressAdminSecrets"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/wordpress-ec2-rds-dev-asg/WordpressAdminSecrets/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/3VRXW/bMAz8LX1X1Dp72Ws+sKLAgBlx0T4OtMy4XGXKEKkEgeH/PthOYm/Dnnh3PJEHcW2z7Kt9eoCzrFz1ufJU2q5QcJ8GzvKzQ7e23VvrzO7Ib/nO5Kn05IpUMuqgzegQkuIrlB5nfdY2IsERKAW+m00e6QSK84wXVoyM+gyKZ7hcl17ZRhXcR4OspkCXIunlOYbUjuuWQm8EXUSVBhhqjLYrRn41DmgqrxBr1MXcu+HvTm9iJbbbg0IJgi8sCuzQTNHvMfbbf4SbtTfoQZScD1CV4IEdcX1a227Ttp7c+DXfA1TbsYdxeP4HX/pIFPnqueFFf4p/T7GgvXE+pOoYA6vtdgP+NuB3LPckGqlMtxsteW8IGtsdwnTdsebBkxtvNKG+NweUkKJDs0uioZnpkf/TymM4UYVxC4JmI4JaKNTE9fDmR9I2aW/yi34EfvxisyebZQ+/hGgVEys1aA9T/Q3OouR7yAIAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "WordpressEc2RdsStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "WordpressALBwordpressec2rdsdevalbdnsname4CB6F7C3": {
+   "Value": {
+    "Fn::GetAtt": [
+     "WordpressALBwordpressec2rdsdevalbE7F2C321",
+     "DNSName"
+    ]
+   }
+  },
+  "ALBDnsName": {
+   "Value": {
+    "Fn::GetAtt": [
+     "WordpressALBwordpressec2rdsdevalbE7F2C321",
+     "DNSName"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
