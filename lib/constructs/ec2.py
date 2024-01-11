@@ -55,7 +55,18 @@ class WordpressAutoScalingGroup(Construct):
             "Allows HTTP access from resources inside our VPC (like the ALB)",
         )
 
-        # Secrets for WP Admin
+        # # Secrets for WP Admin
+        # secrets.Secret(
+        #     self,
+        #     "WordpressAdminSecrets",
+        #     secret_name=wp_secret_name,
+        #     description="Admin credentials to access WordPress",
+        #     generate_secret_string=secrets.SecretStringGenerator(
+        #         secret_string_template='{"username": "' + config["wordpress"]["admin"]["username"] + '", "email": "' + config["wordpress"]["admin"]["email"] + '"}',
+        #         generate_string_key="password",
+        #     ),
+        # )
+                # Secrets for WP Admin
         secrets.Secret(
             self,
             "WordpressAdminSecrets",

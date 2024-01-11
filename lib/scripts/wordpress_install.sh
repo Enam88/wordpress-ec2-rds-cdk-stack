@@ -72,13 +72,16 @@ mv wp-cli.phar /usr/local/bin/wp
 # AWS and WordPress variables to replace
 # We will replace these variables in the CDK ec2 construct file
 # before using the script to launch an ec2 instance
-DB_SECRETS_PATH=_DB_SECRETS_PATH_
-WP_SECRETS_PATH=_WP_SECRETS_PATH_
-AWS_REGION=_AWS_REGION_
-WP_DB_NAME=_WP_DB_NAME_
-WP_SITE_TITLE=_WP_SITE_TITLE_
-WP_SITE_INSTALL_PATH=_WP_SITE_INSTALL_PATH_
-WP_SITE_BASE_DOMAIN=_WP_SITE_BASE_DOMAIN_
+# DB_SECRETS_PATH=_DB_SECRETS_PATH_
+# WP_SECRETS_PATH=_WP_SECRETS_PATH_
+# AWS_REGION=_AWS_REGION_
+# WP_DB_NAME=_WP_DB_NAME_
+# WP_SITE_TITLE=_WP_SITE_TITLE_
+# WP_SITE_INSTALL_PATH=_WP_SITE_INSTALL_PATH_
+# WP_SITE_BASE_DOMAIN=_WP_SITE_BASE_DOMAIN_
+
+
+
 
 # Wait for Secrets Manager to have RDS secret ready
 # Certain database secrets (e.g., host, port) won't be ready until the database is ready

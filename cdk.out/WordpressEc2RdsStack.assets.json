@@ -7,25 +7,23 @@
         "packaging": "zip"
       },
       "destinations": {
-        "943240599753-eu-west-3": {
-          "bucketName": "cdk-hnb659fds-assets-943240599753-eu-west-3",
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
           "objectKey": "dd5711540f04e06aa955d7f4862fc04e8cdea464cb590dae91ed2976bb78098e.zip",
-          "region": "eu-west-3",
-          "assumeRoleArn": "arn:${AWS::Partition}:iam::943240599753:role/cdk-hnb659fds-file-publishing-role-943240599753-eu-west-3"
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
     },
-    "14869402d5c383eadbe0ec0a187a4d6b8dbff7db3ef108d21f73109a50768ee4": {
+    "35198006afd227859787fc083493449e34e8fe41d21ca15c27a50d4dfa70026f": {
       "source": {
         "path": "WordpressEc2RdsStack.template.json",
         "packaging": "file"
       },
       "destinations": {
-        "943240599753-eu-west-3": {
-          "bucketName": "cdk-hnb659fds-assets-943240599753-eu-west-3",
-          "objectKey": "14869402d5c383eadbe0ec0a187a4d6b8dbff7db3ef108d21f73109a50768ee4.json",
-          "region": "eu-west-3",
-          "assumeRoleArn": "arn:${AWS::Partition}:iam::943240599753:role/cdk-hnb659fds-file-publishing-role-943240599753-eu-west-3"
+        "current_account-current_region": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
+          "objectKey": "35198006afd227859787fc083493449e34e8fe41d21ca15c27a50d4dfa70026f.json",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
     }
