@@ -238,7 +238,7 @@ from lib.constructs.vpc import CustomVPC
 from lib.config import config
 from lib.constructs.rds import MySQLRdsInstance
 from lib.constructs.sm import MySecretsManager
-# from lib.constructs.alb import WordpressApplicationLoadBalancer
+from lib.constructs.alb import WordpressApplicationLoadBalancer
 # from lib.constructs.ec2 import WordpressAutoScalingGroup
 # from aws_cdk import aws_cloudfront as cloudfront
 
@@ -261,7 +261,7 @@ class WordpressEc2RdsStack(Stack):
         # sm_instance = MySecretsManager(self, 'MySecretsManager')
 
 
-        # Create RDS instance
+        # Create RDS instance with RDS Proxy
         rds_instance = MySQLRdsInstance(self, 'MySQLRDSInstance', {
             'prefix': config['projectName'],
             'vpc': custom_vpc_instance.vpc,
@@ -269,22 +269,21 @@ class WordpressEc2RdsStack(Stack):
             'database': 'mydatabase',
             'port': 3306,  # Specify the port if needed
             'secret_arn': 'arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL',
-            'secret_name': '/rds/mysql/credentials',  # Specify the secret name if needed
+            # 'secret_name': '/rds/mysql/credentials',  # Specify the secret name if needed
         })
-        
-        # # Create a secret with an alias using your custom construct
-        # wp_secrets_manager = MySecretsManager(self, 'WordpressSecretsManager')
-        # wp_credentials_secret = wp_secrets_manager.secret
 
-        # # RDS -- create the MySQL database
-        # rds_instance = MySQLRdsInstance(self, 'MySQLRDSInstance', {
-        #     'prefix': config['projectName'],
-        #     'vpc': custom_vpc_instance.vpc,
-        #     'user': 'wordpress_admin',
-        #     'database': 'awesome-wp-site-db',
-        #     'port': 3306,
-        #     'secretName': f"{config['projectName']}/rds/mysql/credentials",
-        # })
+
+        # Application Load Balancer
+        alb = WordpressApplicationLoadBalancer(self, 'ALB', {
+            'prefix': config['projectName'],
+            'vpc': custom_vpc_instance.vpc,
+        })
+
+        # Output the ALB DNS name
+        cdk.CfnOutput(self, 'ALB-DNS-Name', value=alb.load_balancer_dns_name)
+
+        
+
 
     #     # ALB -- for our single instance
     #     alb_instance = WordpressApplicationLoadBalancer(self, 'WordpressALB', {
