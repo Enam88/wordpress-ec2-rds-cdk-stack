@@ -2,6 +2,7 @@ import aws_cdk as cdk
 from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_rds as rds
 from aws_cdk import aws_secretsmanager as secretsmanager
+# from aws_cdk.aws_rds import DatabaseProxy as rdsproxy
 from constructs import Construct
 import json
 
@@ -61,7 +62,24 @@ class MySQLRdsInstance(Construct):
             security_groups=[ingress_security_group]
         )
 
-        # ...
+        # Create an RDS Proxy for the RDS instance
+        rds_proxy = rds.DatabaseProxy(
+            self,
+            f"{props['prefix']}-RDSProxy",
+            db_proxy_name=f"{props['prefix']}-RDSProxy",
+            vpc=custom_vpc,
+            secrets=[existing_secret if existing_secret else secretsmanager.Secret.from_secret_name(self, 'RDSInstanceSecret', secret_name)],
+            debug_logging=False,  # Set to True for debug logging if needed
+            proxy_target=rds.ProxyTarget.from_instance(mysql_rds_instance),
+            require_tls=True,  # Enforce TLS encryption for connections
+        )
+
+        # Allow connections from the RDS Proxy to the RDS instance
+        mysql_rds_instance.connections.allow_from(
+            rds_proxy,
+            ec2.Port.tcp(props.get('port', 3306)),
+            "Allow connections from RDS Proxy",
+        )
 
         self.database_secret_name = secret_name
         self.mysql_rds_instance = mysql_rds_instance
