@@ -79,17 +79,20 @@ class CustomVPC(Construct):
         )
 
         # Associate the NACL with the public subnets
+        # For Public Subnets
         for subnet in self.vpc.public_subnets:
-            nacl.associate_with_subnet(f"{props['prefix']}-PublicSubnetAssociation-{subnet.node.id}", subnet)
-
+            ec2.CfnSubnetNetworkAclAssociation(
+                self,
+                f"{props['prefix']}-PublicSubnetAssociation-{subnet.node.id}",
+                subnet_id=subnet.subnet_id,
+                network_acl_id=nacl.network_acl_id)
 
         # Create a Network ACL for the Isolated Subnets (for RDS)
         isolated_nacl = ec2.NetworkAcl(
             self,
             f"{props['prefix']}-isolated-nacl",
             vpc=self.vpc,
-            subnet_selection=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_ISOLATED),
-        )
+            subnet_selection=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_ISOLATED),)
 
         # Inbound rules for Isolated Subnets
         # Allow MySQL traffic from the EC2 instances
@@ -114,9 +117,14 @@ class CustomVPC(Construct):
         )
 
         # Associate the Isolated NACL with the isolated subnets
+        # For Isolated Subnets
         for subnet in self.vpc.isolated_subnets:
-            isolated_nacl.associate_with_subnet(f"{props['prefix']}-IsolatedSubnetAssociation-{subnet.node.id}", subnet)
-
+            ec2.CfnSubnetNetworkAclAssociation(
+                self,
+                f"{props['prefix']}-IsolatedSubnetAssociation-{subnet.node.id}",
+                subnet_id=subnet.subnet_id,
+                network_acl_id=isolated_nacl.network_acl_id
+            )
 
 custom_vpc = CustomVPC(
 scope=cdk.Stack(),
