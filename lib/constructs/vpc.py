@@ -8,128 +8,82 @@ class CustomVPC(Construct):
     def __init__(self, scope: Construct, id: str, props: dict) -> None:
         super().__init__(scope, id)
 
-        # Create a VPC with specified CIDR block and subnet configurations
+        # Creates a VPC with public and isolated subnets across multiple availability zones.
         self.vpc = ec2.Vpc(
             self,
             f"{props['prefix']}-vpc",
-            max_azs=2,  # Specifies the number of Availability Zones to use
-            cidr=props['vpc_cidr_block'],  # CIDR block for the VPC
-            enable_dns_hostnames=True,  # Enable DNS hostnames in the VPC
-            enable_dns_support=True,  # Enable DNS support in the VPC
-            nat_gateways=0,  # Number of NAT gateways in the VPC
+            max_azs=2,  # Supports high availability across 2 AZs.
+            cidr=props['vpc_cidr_block'],
+            enable_dns_hostnames=True,  # Facilitates the resolution of DNS hostnames.
+            enable_dns_support=True,  # Ensures DNS resolution within the VPC.
+            nat_gateways=0,  # No NAT gateways since there are no private subnets needing outbound access.
             subnet_configuration=[
                 ec2.SubnetConfiguration(
                     name=f"{props['prefix']}-public",
-                    cidr_mask=22,  # Subnet mask for the public subnet
-                    subnet_type=ec2.SubnetType.PUBLIC,  # Subnet type
+                    cidr_mask=24,  # A /24 subnet allows for 256 IP addresses.
+                    subnet_type=ec2.SubnetType.PUBLIC,
                 ),
                 ec2.SubnetConfiguration(
                     name=f"{props['prefix']}-isolated",
-                    cidr_mask=22, # Subnet mask for the isolated subnet
-                    subnet_type=ec2.SubnetType.PRIVATE_ISOLATED ),],) # Subnet type
-            # Expose VPC attributes for access by other constructs
+                    cidr_mask=24,  # Also a /24 subnet for isolated resources like RDS instances.
+                    subnet_type=ec2.SubnetType.PRIVATE_ISOLATED
+                ),
+            ],
+        )
+
+        # Exposes the VPC's ID and subnet details for other resources to reference.
         self.vpc_id = self.vpc.vpc_id
         self.public_subnets = self.vpc.public_subnets
         self.isolated_subnets = self.vpc.isolated_subnets
 
-        # Create a Network ACL for the VPC
-        nacl = ec2.NetworkAcl(
+        # Security groups for both the public and isolated subnets are created to control traffic.
+        self.public_security_group = self.create_security_group(
+            f"{props['prefix']}-public-sg",
+            "Security group for public subnets",
+            self.vpc.public_subnets
+        )
+
+        self.isolated_security_group = self.create_security_group(
+            f"{props['prefix']}-isolated-sg",
+            "Security group for isolated subnets",
+            self.vpc.isolated_subnets
+        )
+
+        # A security group specifically for RDS instances is created for tighter control.
+        self.rds_security_group = self.create_security_group(
+            f"{props['prefix']}-rds-sg",
+            "Security group for RDS instances",
+            self.vpc.isolated_subnets
+        )
+
+        # Allows MySQL traffic from the public security group to the RDS security group.
+        self.rds_security_group.add_ingress_rule(
+            self.public_security_group,
+            ec2.Port.tcp(3306),
+            "Allow MySQL access from EC2 instances"
+        )
+
+    def create_security_group(self, id: str, description: str, subnets):
+        # Creates a security group with a descriptive name and description.
+        sg = ec2.SecurityGroup(
             self,
-            f"{props['prefix']}-nacl",
+            id,
             vpc=self.vpc,
-            subnet_selection=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+            description=description,
+            security_group_name=id
         )
 
-        # Inbound rules
-        # Allow HTTP and HTTPS traffic from any IP address
-        nacl.add_entry(
-            f"{props['prefix']}-InboundHTTP",
-            rule_number=100,
-            traffic=ec2.AclTraffic.tcp_port(80),
-            direction=ec2.TrafficDirection.INGRESS,
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_action=ec2.Action.ALLOW,
-        )
-        nacl.add_entry(
-            f"{props['prefix']}-InboundHTTPS",
-            rule_number=110,
-            traffic=ec2.AclTraffic.tcp_port(443),
-            direction=ec2.TrafficDirection.INGRESS,
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_action=ec2.Action.ALLOW,
-        )
+        # Adds a rule to allow SSH access. For production, limit this to known IPs.
+        sg.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(22), "Allow SSH access")
 
-        # Outbound rules
-        # Allow HTTP and HTTPS traffic to any IP address
-        nacl.add_entry(
-            f"{props['prefix']}-OutboundHTTP",
-            rule_number=100,
-            traffic=ec2.AclTraffic.tcp_port(80),
-            direction=ec2.TrafficDirection.EGRESS,
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_action=ec2.Action.ALLOW,
-        )
-        nacl.add_entry(
-            f"{props['prefix']}-OutboundHTTPS",
-            rule_number=110,
-            traffic=ec2.AclTraffic.tcp_port(443),
-            direction=ec2.TrafficDirection.EGRESS,
-            cidr=ec2.AclCidr.any_ipv4(),
-            rule_action=ec2.Action.ALLOW,
-        )
+        return sg
 
-        # Associate the NACL with the public subnets
-        # For Public Subnets
-        for subnet in self.vpc.public_subnets:
-            ec2.CfnSubnetNetworkAclAssociation(
-                self,
-                f"{props['prefix']}-PublicSubnetAssociation-{subnet.node.id}",
-                subnet_id=subnet.subnet_id,
-                network_acl_id=nacl.network_acl_id)
-
-        # Create a Network ACL for the Isolated Subnets (for RDS)
-        isolated_nacl = ec2.NetworkAcl(
-            self,
-            f"{props['prefix']}-isolated-nacl",
-            vpc=self.vpc,
-            subnet_selection=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_ISOLATED),)
-
-        # Inbound rules for Isolated Subnets
-        # Allow MySQL traffic from the EC2 instances
-        isolated_nacl.add_entry(
-            f"{props['prefix']}-InboundMySQL",
-            rule_number=150,
-            traffic=ec2.AclTraffic.tcp_port(3306),
-            direction=ec2.TrafficDirection.INGRESS,
-            cidr=ec2.AclCidr.ipv4('172.22.0.0/22'),  # Replace with your EC2 Subnet CIDR
-            rule_action=ec2.Action.ALLOW,
-        )
-
-        # Outbound rules for Isolated Subnets
-        # Allow MySQL traffic to the EC2 instances
-        isolated_nacl.add_entry(
-            f"{props['prefix']}-OutboundMySQL",
-            rule_number=150,
-            traffic=ec2.AclTraffic.tcp_port(3306),
-            direction=ec2.TrafficDirection.EGRESS,
-            cidr=ec2.AclCidr.ipv4('172.22.0.0/22'),  # Replace with your EC2 Subnet CIDR
-            rule_action=ec2.Action.ALLOW,
-        )
-
-        # Associate the Isolated NACL with the isolated subnets
-        # For Isolated Subnets
-        for subnet in self.vpc.isolated_subnets:
-            ec2.CfnSubnetNetworkAclAssociation(
-                self,
-                f"{props['prefix']}-IsolatedSubnetAssociation-{subnet.node.id}",
-                subnet_id=subnet.subnet_id,
-                network_acl_id=isolated_nacl.network_acl_id
-            )
-
+# Utilization of the CustomVPC construct in a stack.
 custom_vpc = CustomVPC(
-scope=cdk.Stack(),
-id="CustomVPC",
-props={
-'prefix': config['project_name'],
-'vpc_cidr_block': '172.22.0.0/16',
-})
+    scope=cdk.Stack(),
+    id="CustomVPC",
+    props={
+        'prefix': config['project_name'],
+        'vpc_cidr_block': '10.0.0.0/16',
+    }
+)
