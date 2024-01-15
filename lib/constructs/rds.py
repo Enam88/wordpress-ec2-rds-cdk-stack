@@ -56,9 +56,23 @@ class MySQLRdsInstance(Construct):
             removal_policy=cdk.RemovalPolicy.DESTROY  # Consider changing for production
         )
 
+        # Define the RDS Proxy
+        self.rds_proxy = rds.DatabaseProxy(
+            self,
+            f"{props['prefix']}-rds-proxy",
+            proxy_target=rds.ProxyTarget.from_instance(self.rds_instance),
+            vpc=custom_vpc,
+            security_groups=[rds_security_group],
+            idle_client_timeout=cdk.Duration.minutes(10),
+            debug_logging=True,
+            require_tls=True
+        )
+
+
         # Expose RDS instance and secret attributes for access in other constructs
         self.rds_instance = mysql_rds_instance
         self.db_secret = secret
+        self.db_proxy = self.rds_proxy
 
     # def create_or_fetch_secret(self, secret_name: str, props: dict):
     #     """
