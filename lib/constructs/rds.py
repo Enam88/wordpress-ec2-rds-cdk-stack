@@ -4,6 +4,7 @@ from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_rds as rds
 from aws_cdk import aws_secretsmanager as secretsmanager
 from constructs import Construct
+# from lib.constructs.vpc import CustomVPC
 import json
 
 class MySQLRdsInstance(Construct):
@@ -59,28 +60,64 @@ class MySQLRdsInstance(Construct):
         self.rds_instance = mysql_rds_instance
         self.db_secret = secret
 
-    def create_or_fetch_secret(self, secret_name: str, props: dict):
-        """
-        Create a new secret in Secrets Manager or fetch an existing one.
-        This secret will store the RDS instance credentials.
-        """
-        try:
-            # Attempt to fetch the existing secret
-            return secretsmanager.Secret.from_secret_name_v2(
-                self, 'ExistingSecret', secret_name
-            )
-        except Exception:
-            # Secret doesn't exist, create a new one
-            return secretsmanager.Secret(
-                self, 'RDSInstanceSecret',
-                secret_name=secret_name,
-                generate_secret_string=secretsmanager.SecretStringGenerator(
+    # def create_or_fetch_secret(self, secret_name: str, props: dict):
+    #     """
+    #     Create a new secret in Secrets Manager or fetch an existing one.
+    #     This secret will store the RDS instance credentials.
+    #     """
+    #     try:
+    #         # Attempt to fetch the existing secret
+    #         return secretsmanager.Secret.from_secret_name_v2(
+    #             self, 'ExistingSecret', secret_name
+    #         )
+    #     except Exception:
+    #         # Secret doesn't exist, create a new one
+    #         return secretsmanager.Secret(
+    #             self, 'RDSInstanceSecret',
+    #             secret_name=secret_name,
+    #             generate_secret_string=secretsmanager.SecretStringGenerator(
+    #                 secret_string_template=json.dumps({
+    #                     'username': props['user'],
+    #                     'database': props['database'],
+    #                 }),
+    #                 generate_string_key='password',
+    #                 exclude_characters='[]()"/'  # Exclude characters that might cause issues
+    #             ),
+    #         )
+        def create_or_fetch_secret(self, secret_name: str, props: dict):
+            
+        # """
+        # Attempt to fetch an existing secret by its name. If it does not exist, create a new secret.
+        # This secret stores the RDS instance credentials.
+        # """
+        # Instead of trying to fetch and then handle an exception,
+        # check if the secret exists using the AWS SDK or CDK methods.
+            existing_secret = None
+
+                # One approach is to list secrets and check if the desired secret is in the list
+                # Note: This may require appropriate permissions to list secrets in Secrets Manager
+            secret_list = secretsmanager.Secret.from_secret_attributes(self, "SecretList", [])
+            for secret in secret_list:
+                if secret.secret_name == secret_name:
+                    existing_secret = secret
+                    break
+            if existing_secret is None:
+            # Secret doesn't exist, so create a new one
+                return secretsmanager.Secret(
+                    self, 'RDSInstanceSecret',
+                    secret_name=secret_name,
+                    generate_secret_string=secretsmanager.SecretStringGenerator(
                     secret_string_template=json.dumps({
-                        'username': props['user'],
-                        'database': props['database'],
-                    }),
+                    'username': props['user'],
+                    'database': props['database'],}),
                     generate_string_key='password',
                     exclude_characters='{}[]()\'"/\\'  # Exclude characters that might cause issues
-                ),
-            )
+            ),
+        )
+            else:
+                # Return the existing secret
+                return existing_secret
+
+                            
+
 
