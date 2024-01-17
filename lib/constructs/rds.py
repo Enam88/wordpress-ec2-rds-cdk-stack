@@ -110,11 +110,17 @@ from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_rds as rds
 from aws_cdk import aws_secretsmanager as secretsmanager
 from constructs import Construct
+# from lib.constructs.vpc import CustomVPC
+
 
 # Define the MySQLRdsInstance class
 class MySQLRdsInstance(Construct):
     def __init__(self, scope: Construct, id: str, props: dict) -> None:
         super().__init__(scope, id)
+
+
+        # custom_vpc = CustomVPC(self, "CustomVPC", props)
+        # vpc_subnets = ec2.SubnetSelection(subnets=custom_vpc.private_subnets)
 
         # Fetch the existing secret by its ARN
         self.db_secret = secretsmanager.Secret.from_secret_complete_arn(
@@ -124,7 +130,7 @@ class MySQLRdsInstance(Construct):
         )
         # Note: Replace the ARN with the actual ARN of your secret
 
-                # Create a security group for the RDS instance within the VPC
+        # Create a security group for the RDS instance within the VPC
         rds_security_group = ec2.SecurityGroup(
             self,
             f"{props['prefix']}-rds-sg",
@@ -149,7 +155,7 @@ class MySQLRdsInstance(Construct):
             instance_type=ec2.InstanceType.of(
             ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
             vpc=props['vpc'],
-            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_ISOLATED),
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_ISOLATED),  # Use the private subnets
             security_groups=[rds_security_group],
             storage_type=rds.StorageType.GP2,
             allocated_storage=20, # Specify desired storage size
