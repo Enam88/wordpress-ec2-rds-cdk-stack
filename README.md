@@ -1,4 +1,4 @@
-# WordPress on AWS with Elastic Load Balancing and RDS USING PYTHON
+# WordPress on AWS with Elastic Load Balancing and RDS - PYTHON
 
 This project sets up a highly available WordPress site on AWS using Elastic Load Balancer (ELB) and Amazon Relational Database Service (RDS) with RDS Proxy for database access.
 
