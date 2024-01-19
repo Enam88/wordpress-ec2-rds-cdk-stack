@@ -6,7 +6,7 @@ from constructs import Construct
 from lib.constructs.vpc import CustomVPC
 from lib.config import config
 from lib.constructs.rds import MySQLRdsInstance
-# # from lib.constructs.alb import WordpressApplicationLoadBalancer
+from lib.constructs.alb import WordpressApplicationLoadBalancer
 from lib.constructs.ec2 import WordpressAutoScalingGroup
 
 class WordpressEc2RdsStack(Stack):
@@ -33,9 +33,22 @@ class WordpressEc2RdsStack(Stack):
         # This will create an RDS instance and a proxy using the existing secret
 
 
-        # # Instantiate the WordpressAutoScalingGroup
+        # Instantiate the WordpressAutoScalingGroup
         wordpress_asg = WordpressAutoScalingGroup(self, "WordpressAutoScalingGroup", 
             vpc= custom_vpc_instance.vpc,
             db_proxy_endpoint = mysql_rds_instance.rds_proxy.endpoint,  # RDS Proxy endpoint
             # ... other properties as needed
         )
+
+        # Instantiate the WordpressApplicationLoadBalancer
+        wordpress_alb = WordpressApplicationLoadBalancer(
+            self, 
+            "WordpressApplicationLoadBalancer", 
+            props={
+                'prefix': config['project_name'],
+                'vpc': custom_vpc_instance.vpc,
+                # Other properties as needed
+            },
+            auto_scaling_group=wordpress_asg.auto_scaling_group  # Pass the auto scaling group
+        )
+
