@@ -1,178 +1,210 @@
-#! /bin/bash
+#!/usr/bin/env bash
 
-# lib/scripts/wordpress_install.sh
+# Author: @11808s8 - Adriano
+# Email: adrianogsss@gmail.com
+# Version: 1.1.0 - 07/04/2020
+#
+# @TODO: Refactor this, breaking parts into modules
+# and include more comments/User feedbacks
+#
+# @TODO: Remove hardcoded credentials
+# 
+# !READ THIS! you should change the root credentials
+#  and wordpress credentials accordingly.
+#  This script needs to be refined in order to be
+#  reproducible on a production environment.
+#
+# YOU CAN UPLOAD THIS ON YOUR USER DATA CONFIG FOR LAUNCHING AN INSTANCE
+# NO NEED TO RUN IT INSIDE YOUR INSTANCE !!!
+# (but you can run this inside your AWS EC2 instance if you want lol who am I to judge)
+#
 
-#------------------ 0.USEFUL FUNCTIONS
+sudo yum update -y
 
-# Checks to see if an env is defined (not null) in the bash session
-is_defined () {
-    for var in "$@" ; do
-        if [ ! -z "${!var}" ] && [ "${!var}" != "null" ]; then
-            echo "$var is set to ${!var}"
-        else
-            echo "$var is not set"
-            return 1
-        fi
-    done
+# Install necessary packages
+
+sudo yum install mariadb-server.x86_64 -y
+sudo amazon-linux-extras install nginx1
+sudo amazon-linux-extras install php7.2
+
+# Start the processes
+sudo systemctl enable mariadb 
+sudo systemctl start mariadb 
+sudo systemctl enable nginx 
+sudo systemctl start nginx 
+sudo systemctl enable php-fpm 
+sudo systemctl start php-fpm 
+
+# Configure the processes to start when the instance boots up
+sudo chkconfig php-fpm on
+sudo chkconfig nginx on
+sudo chkconfig mariadb on
+
+# Switch the APACHE lines on php-fpm (default ones) for nginx specific ones
+sudo sed -i 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf
+sudo sed -i 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
+
+# Create the www dir
+sudo mkdir /var/www/
+
+# Permission for us to download wordpress
+sudo chown ec2-user:ec2-user /var/www/
+cd /var/www/
+
+# Download and extraction of wordpress
+wget http://wordpress.org/latest.tar.gz
+tar -xvf latest.tar.gz
+rm latest.tar.gz
+cd /var/
+
+# Permission to nginx to use /var/www/
+sudo chown -R nginx:nginx /var/www/
+
+sudo systemctl stop mariadb
+sudo mysql_install_db
+sudo systemctl start mariadb
+
+
+# Deprecated! 
+#sudo mysql_secure_installation
+
+
+# Adapted from here: https://bertvv.github.io/notes-to-self/2015/11/16/automating-mysql_secure_installation/
+
+mysql --user=root <<EOF
+USE mysql;
+UPDATE user SET password=PASSWORD('root') WHERE User='root' AND Host = 'localhost';
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+FLUSH PRIVILEGES;
+EOF
+
+# ---
+
+# CREATING THE DB
+sudo mysqladmin -u 'root' -proot create 'wordpress'
+# cd /tmp/
+
+# ---- Deprecated ----
+# CREATING THE WORDPRESS USER AND PASSWORD
+# echo 'CREATE USER wordpress@localhost IDENTIFIED BY "wordpresspass";
+# GRANT ALL PRIVILEGES ON wordpress.* to wordpress@localhost;' > mysql_wordpress_setup.sql
+# sudo mysql -u root -proot wordpress < mysql_wordpress_setup.sql
+# rm mysql_wordpress_setup.sql
+# ---- ---------- ----
+
+mysql --user=root -proot <<EOF
+CREATE USER wordpress@localhost IDENTIFIED BY "wordpresspass";
+GRANT ALL PRIVILEGES ON wordpress.* to wordpress@localhost;
+EOF
+
+# ---
+
+# NGINX configuration for the server block! (vhost)
+
+cd /tmp/
+sudo echo "server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name wordpress;
+    root /var/www/wordpress;
+    index index.php;
+    # Load configuration files for the default server block.
+    include /etc/nginx/default.d/*.conf;
+}" > wordpress.conf
+sudo chown root:root wordpress.conf
+sudo chmod 644 wordpress.conf
+sudo mv wordpress.conf /etc/nginx/conf.d/
+
+
+sudo echo "
+# For more information on configuration, see:
+#   * Official English Documentation: http://nginx.org/en/docs/
+#   * Official Russian Documentation: http://nginx.org/ru/docs/
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+include /usr/share/nginx/modules/*.conf;
+events {
+    worker_connections 1024;
 }
-
-# Checks if desired db secrets in secrets manager are ready
-# Db secrets are only fully ready when the RDS DB is ready
-db_secrets_ready () {
-    if ! is_defined "AWS_REGION" "DB_SECRETS_PATH";then
-        return 0
-    fi
-
-    echo "Retrieving secrets..." 
-    DB_SECRETS_JSON=$(aws secretsmanager get-secret-value --secret-id $DB_SECRETS_PATH --region $AWS_REGION | jq -r '.SecretString')
-
-    echo "Retrieved secrets." 
-    DB_USER=$(echo $DB_SECRETS_JSON | jq -r '.username')
-    DB_PASS=$(echo $DB_SECRETS_JSON | jq -r '.password')
-    DB_HOST=$(echo $DB_SECRETS_JSON | jq -r '.host')
-    DB_PORT=$(echo $DB_SECRETS_JSON | jq -r '.port')
-
-    echo "Checking secrets..." 
-    if ! is_defined "DB_USER" "DB_PASS" "DB_HOST" "DB_PORT";then
-        echo "Secrets are not ready." 
-        return 1
-    fi
-
-    echo "Secrets are ready." 
-    return 0
-
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] \"$request\" '
+                      '$status $body_bytes_sent \"$http_referer\" '
+                      '\"$http_user_agent\" \"$http_x_forwarded_for\"';
+    access_log  /var/log/nginx/access.log  main;
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 2048;
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/nginx/conf.d/*.conf;
+#    server {
+#        listen       80 default_server;
+#        listen       [::]:80 default_server;
+#        server_name  _;
+#        root         /usr/share/nginx/html;
+#
+#        # Load configuration files for the default server block.
+#        include /etc/nginx/default.d/*.conf;
+#
+#        location / {
+#        }
+#
+#        error_page 404 /404.html;
+#            location = /40x.html {
+#        }
+#
+#        error_page 500 502 503 504 /50x.html;
+#            location = /50x.html {
+#        }
+#    }
+# Settings for a TLS enabled server.
+#
+#    server {
+#        listen       443 ssl http2 default_server;
+#        listen       [::]:443 ssl http2 default_server;
+#        server_name  _;
+#        root         /usr/share/nginx/html;
+#
+#        ssl_certificate \"/etc/pki/nginx/server.crt\";
+#        ssl_certificate_key \"/etc/pki/nginx/private/server.key\";
+#        ssl_session_cache shared:SSL:1m;
+#        ssl_session_timeout  10m;
+#        ssl_ciphers PROFILE=SYSTEM;
+#        ssl_prefer_server_ciphers on;
+#
+#        # Load configuration files for the default server block.
+#        include /etc/nginx/default.d/*.conf;
+#
+#        location / {
+#        }
+#
+#        error_page 404 /404.html;
+#            location = /40x.html {
+#        }
+#
+#        error_page 500 502 503 504 /50x.html;
+#            location = /50x.html {
+#        }
+#    }
 }
+" > nginx.conf
 
-#------------------  1.INSTALL DEPENDECIES
-# update dependencies
-sudo yum -y update
+sudo chown root:root nginx.conf
+sudo chmod 644 nginx.conf
+sudo mv nginx.conf /etc/nginx/
 
-# Install Apache
-sudo yum -y install httpd
-
-# Start Apache
-service httpd start
-
-# Install PHP, PHP CLI, JQ, MySQL
-sudo yum -y install php php-cli php-mysql jq mysql mysqladmin
-
-# PHP7 needed for the latest WordPress
-amazon-linux-extras install php7.4 -y 
-
-# Restart Apache
-service httpd restart
-
-# Install the WordPress CLI which will help us install WordPress correctly
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-mv wp-cli.phar /usr/local/bin/wp
-
-#------------------  2.SET SCRIPT GLOBAL VARIABLES
-
-# AWS and WordPress variables to replace
-# We will replace these variables in the CDK ec2 construct file
-# before using the script to launch an ec2 instance
-# DB_SECRETS_PATH=_DB_SECRETS_PATH_
-# WP_SECRETS_PATH=_WP_SECRETS_PATH_
-# AWS_REGION=_AWS_REGION_
-# WP_DB_NAME=_WP_DB_NAME_
-# WP_SITE_TITLE=_WP_SITE_TITLE_
-# WP_SITE_INSTALL_PATH=_WP_SITE_INSTALL_PATH_
-# WP_SITE_BASE_DOMAIN=_WP_SITE_BASE_DOMAIN_
-
-
-
-
-# Wait for Secrets Manager to have RDS secret ready
-# Certain database secrets (e.g., host, port) won't be ready until the database is ready
-echo "Waiting up to 20 minutes for Secrets Manager to be ready with Secrets";
-for i in {1..240}; do
-    echo "try count: $i"
-    db_secrets_ready && break;
-    # retry every 30 seconds
-    sleep 30s; 
-done
-echo "Secrets Manager is ready with Secrets";
-
-# Use the AWS CLI to get secrets from Secrets Manager
-DB_SECRETS_JSON=$(aws secretsmanager get-secret-value --secret-id $DB_SECRETS_PATH --region $AWS_REGION | jq -r '.SecretString')
-WP_SECRETS_JSON=$(aws secretsmanager get-secret-value --secret-id $WP_SECRETS_PATH --region $AWS_REGION | jq -r '.SecretString')
-
-# Parse secrets from JSON response using the useful jq
-DB_USER=$(echo $DB_SECRETS_JSON | jq -r '.username')
-DB_PASS=$(echo $DB_SECRETS_JSON | jq -r '.password')
-DB_HOST=$(echo $DB_SECRETS_JSON | jq -r '.host')
-DB_PORT=$(echo $DB_SECRETS_JSON | jq -r '.port')
-WP_ADMIN_USER=$(echo $WP_SECRETS_JSON | jq -r '.username')
-WP_ADMIN_PASSWORD=$(echo $WP_SECRETS_JSON | jq -r '.password')
-WP_ADMIN_EMAIL=$(echo $WP_SECRETS_JSON | jq -r '.email')
-
-# If some ENV is not defined, stop the script
-if ! is_defined \
-"DB_SECRETS_PATH" \
-"WP_SECRETS_PATH" \
-"AWS_REGION" \
-"WP_DB_NAME" \
-"WP_SITE_TITLE" \
-"WP_SITE_INSTALL_PATH" \
-"WP_SITE_BASE_DOMAIN" \
-"DB_USER" \
-"DB_PASS" \
-"DB_HOST" \
-"DB_PORT" \
-"WP_ADMIN_USER" \
-"WP_ADMIN_PASSWORD" \
-"WP_ADMIN_EMAIL" \
-; then
-    echo "Exiting WP installation script because some variables were undefined"
-    exit 0
-fi
-
-#------------------  3.CREATE WORDPRESS MYSQL DATABASE
-
-# Wait for the database to be ready
-# Usually this should only run once because of the DB secrets in AWS SM are ready
-# then it means the database is likely ready as well
-for i in {1..30}; do
-    echo "try count: $i"
-    mysqladmin ping -h "$DB_HOST" -u$DB_USER -p$DB_PASS -P $DB_PORT --silent && break;
-    # retry every 30s
-    sleep 30s
-done
-
-# Create the database.
-echo "Creating the database $WP_DB_NAME..."
-mysql -h $DB_HOST -u$DB_USER -p$DB_PASS -P $DB_PORT -e"CREATE DATABASE $WP_DB_NAME"
-
-#------------------  4.SETUP WORDPRESS INSTALLATION
-
-# Download WP Core.
-/usr/local/bin/wp core download --path=$WP_SITE_INSTALL_PATH
-
-# Generate the wp-config.php file
-/usr/local/bin/wp core config \
---path=$WP_SITE_INSTALL_PATH \
---dbname=$WP_DB_NAME \
---dbuser=$DB_USER \
---dbpass=$DB_PASS \
---dbhost=$DB_HOST \
---extra-php <<PHP
-define('WP_DEBUG', true);
-define('WP_DEBUG_LOG', true);
-define('WP_DEBUG_DISPLAY', true);
-define('WP_MEMORY_LIMIT', '256M');
-PHP
-
-# Install the WordPress database.
-/usr/local/bin/wp core install \
---path=$WP_SITE_INSTALL_PATH \
---url=$WP_SITE_BASE_DOMAIN \
---title=$WP_SITE_TITLE \
---admin_user=$WP_ADMIN_USER \
---admin_password=$WP_ADMIN_PASSWORD \
---admin_email=$WP_ADMIN_EMAIL
-
-# Restart Apache
-service httpd restart
-
-# WordPress is now installed!
+# The cherry on top
+sudo service nginx restart
+sudo service php-fpm restart
+sudo service mariadb restart
