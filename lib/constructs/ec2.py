@@ -4,14 +4,19 @@ from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_iam as iam
 from aws_cdk import aws_autoscaling as autoscaling
 from constructs import Construct
-from lib.config import config  # Importing your config
+from lib.config import config  # Importing  config
+# from lib import scripts
+# from aws_cdk import aws_secretsmanager as secrets
+
 
 # Define the WordpressAutoScalingGroup class
 class WordpressAutoScalingGroup(Construct):
     def __init__(self, scope: Construct, id: str, vpc: ec2.IVpc, db_proxy_endpoint: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-                # Define a role for the WordPress instances
+
+        key_pair_name = "demo-keypair"
+        # Define a role for the WordPress instances
         role = iam.Role(
             self,
             f"{id}-instance-role",
@@ -33,56 +38,38 @@ class WordpressAutoScalingGroup(Construct):
         # Allow HTTP and HTTPS access from anywhere
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(80), "Allow HTTP access from anywhere")
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(443), "Allow HTTPS access from anywhere")
+        security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(22), "Allow ssh access ")
 
-        # Prepare user data script for WordPress setup
-        user_data_script = f"""#!/bin/bash
-            # Install necessary packages
-            yum -y update
-            amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
-            yum install -y httpd mariadb-server
 
-            # PHP7 installation for WordPress
-            amazon-linux-extras enable php7.4
-            yum install -y php7.4
 
-            # Start the Apache server
-            systemctl start httpd.service
-            systemctl enable httpd.service
 
-            # Install WordPress CLI
-            curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-            chmod +x wp-cli.phar
-            mv wp-cli.phar /usr/local/bin/wp
+        # Read the user data script from wordpress_installation.sh
+        with open('.\lib\scripts\wordpress_install.sh', 'r') as file:
+            user_data_script = file.read()
 
-            # Wait for Secrets Manager to have RDS and WP secrets ready
-            for i in {{1..30}}; do
-                if aws secretsmanager get-secret-value --secret-id {config['wordpress']['secrets']['db_secrets_path']} && \
-                aws secretsmanager get-secret-value --secret-id {config['wordpress']['secrets']['wp_secrets_path']}; then
-                break
-                fi
-                sleep 10s
-            done
 
-            # Fetch and execute the WordPress installation script
-            curl -s https://your-script-hosting-location/wordpress_installation.sh | bash
-        """
 
-                # Create an Auto Scaling Group for WordPress instances
+
+
+        # Create an Auto Scaling Group for WordPress instances
         asg = autoscaling.AutoScalingGroup(
             self,
             "WordpressAutoScalingGroup",
             vpc=vpc,
             instance_type=ec2.InstanceType.of(ec2.InstanceClass.BURSTABLE2, ec2.InstanceSize.MICRO),
-                machine_image=ec2.AmazonLinuxImage(),
+                machine_image=ec2.MachineImage.latest_amazon_linux2(),
                 role=role,
                 security_group=security_group,
+                key_name=key_pair_name,
                 user_data=ec2.UserData.custom(user_data_script),
                 min_capacity=1,
                 max_capacity=2,
                 desired_capacity=1,
                 vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+                associate_public_ip_address=True
                 # Additional configurations as needed
                 )
+        
         
         # Expose the security group and auto scaling group
         self.security_group = security_group
