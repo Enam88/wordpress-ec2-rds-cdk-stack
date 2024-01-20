@@ -78,43 +78,6 @@ class CustomVPC(Construct):
                 subnet=subnet
             )
 
-    #nacl rules for public and private subnets     
-    # def add_standard_rules(self, nacl, rule_prefix: str, direction: ec2.TrafficDirection):
-    #     ports = {"HTTP": 80, "HTTPS": 443, "SSH": 22}
-    #     rule_number = 100
-    #     for name, port in ports.items():
-    #         nacl.add_entry(
-    #             f"{rule_prefix}{name}",
-    #             rule_number=rule_number,
-    #             traffic=ec2.AclTraffic.tcp_port(port),
-    #             direction=direction,
-    #             cidr=ec2.AclCidr.any_ipv4(),
-    #             rule_action=ec2.Action.ALLOW
-    #         )
-    #         rule_number += 10
-    # def add_standard_rules(self, nacl, rule_prefix: str, direction: ec2.TrafficDirection):
-    #     # Adding the ephemeral port range first with rule number 100
-    #     nacl.add_entry(
-    #         f"{rule_prefix}Ephemeral",
-    #         rule_number=100,
-    #         traffic=ec2.AclTraffic.tcp_port_range(1024, 65535),
-    #         direction=direction,
-    #         cidr=ec2.AclCidr.any_ipv4(),
-    #         rule_action=ec2.Action.ALLOW
-    #     )
-
-    #     ports = {"HTTP": 80, "HTTPS": 443, "SSH": 22}
-    #     rule_number = 110
-    #     for name, port in ports.items():
-    #         nacl.add_entry(
-    #             f"{rule_prefix}{name}",
-    #             rule_number=rule_number,
-    #             traffic=ec2.AclTraffic.tcp_port(port),
-    #             direction=direction,
-    #             cidr=ec2.AclCidr.any_ipv4(),
-    #             rule_action=ec2.Action.ALLOW
-    #         )
-    #         rule_number += 10
             
     def add_standard_rules(self, nacl, rule_prefix: str, direction: ec2.TrafficDirection):
         base_rule_number = 100  # Starting rule number
