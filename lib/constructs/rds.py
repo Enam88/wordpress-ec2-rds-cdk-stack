@@ -73,6 +73,8 @@ class MySQLRdsInstance(Construct):
 
         # Expose RDS instance, secret, and proxy attributes for access in other constructs
         self.db_proxy_endpoint = self.rds_proxy.endpoint
+        # Expose the security group ID of the RDS Proxy
+        self.db_proxy_sg_id = rds_security_group.security_group_id
 
 
 
