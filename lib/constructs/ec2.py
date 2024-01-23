@@ -11,7 +11,7 @@ from lib.config import config  # Importing  config
 
 # Define the WordpressAutoScalingGroup class
 class WordpressAutoScalingGroup(Construct):
-    def __init__(self, scope: Construct, id: str, vpc: ec2.IVpc, db_proxy_endpoint: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, id: str, vpc: ec2.IVpc, db_proxy_endpoint: str,db_proxy_sg_id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
 
@@ -39,6 +39,14 @@ class WordpressAutoScalingGroup(Construct):
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(80), "Allow HTTP access from anywhere")
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(443), "Allow HTTPS access from anywhere")
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(22), "Allow ssh access ")
+
+
+        # Allow MySQL access to RDS Proxy from WordPress instances
+        security_group.add_egress_rule(
+            ec2.Peer.security_group_id(db_proxy_sg_id),
+            ec2.Port.tcp(3306),
+            "Allow MySQL access to RDS Proxy"
+        )
 
 
 
