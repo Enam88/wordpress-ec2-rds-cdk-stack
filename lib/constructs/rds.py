@@ -17,6 +17,9 @@ class MySQLRdsInstance(Construct):
         # custom_vpc = CustomVPC(self, "CustomVPC", props)
         # vpc_subnets = ec2.SubnetSelection(subnets=custom_vpc.private_subnets)
 
+        # Define the name of your database
+        database_name = "wordpress_db"
+
         # Fetch the existing secret by its ARN
         self.db_secret = secretsmanager.Secret.from_secret_complete_arn(
             self, 
@@ -56,7 +59,8 @@ class MySQLRdsInstance(Construct):
             allocated_storage=20, # Specify desired storage size
             backup_retention=cdk.Duration.days(7),
             deletion_protection=False, # Consider setting to True for production
-            removal_policy=cdk.RemovalPolicy.DESTROY # Adjust as needed
+            removal_policy=cdk.RemovalPolicy.DESTROY,
+             database_name=database_name # Adjust as needed
             )
         # Create an RDS Proxy for the RDS instance
         self.rds_proxy = rds.DatabaseProxy(
