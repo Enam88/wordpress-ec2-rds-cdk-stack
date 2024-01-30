@@ -5,7 +5,6 @@ from aws_cdk import aws_ec2 as ec2
 from aws_cdk import aws_rds as rds
 from aws_cdk import aws_secretsmanager as secretsmanager
 from constructs import Construct
-# from lib.constructs.vpc import CustomVPC
 
 
 # Define the MySQLRdsInstance class
@@ -14,14 +13,9 @@ class MySQLRdsInstance(Construct):
         super().__init__(scope, id)
 
 
-        # custom_vpc = CustomVPC(self, "CustomVPC", props)
-        # vpc_subnets = ec2.SubnetSelection(subnets=custom_vpc.private_subnets)
-
-        # Define the name of your database
-        database_name = "wordpress_db"
 
         # Fetch the existing secret by its ARN
-        self.db_secret = secretsmanager.Secret.from_secret_complete_arn(
+        db_secret = secretsmanager.Secret.from_secret_complete_arn(
             self, 
             "DbSecret", 
             "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL"
@@ -43,11 +37,14 @@ class MySQLRdsInstance(Construct):
                 ec2.Port.tcp(3306),
                 'Allow MySQL access from EC2 instances'
             )
-                # Create the RDS instance using the fetched secret for credentials
+
+
+
+        # Create the RDS instance using the fetched secret for credentials
         self.rds_instance = rds.DatabaseInstance(
             self,
             f"{props['prefix']}-MySqlRDSInstance",
-            credentials=rds.Credentials.from_secret(self.db_secret),
+            credentials=rds.Credentials.from_secret(db_secret),
             engine=rds.DatabaseInstanceEngine.mysql(
             version=rds.MysqlEngineVersion.VER_8_0),
             instance_type=ec2.InstanceType.of(
@@ -60,8 +57,11 @@ class MySQLRdsInstance(Construct):
             backup_retention=cdk.Duration.days(7),
             deletion_protection=False, # Consider setting to True for production
             removal_policy=cdk.RemovalPolicy.DESTROY,
-             database_name=database_name # Adjust as needed
+            publicly_accessible=False # Adjust as needed
             )
+        
+
+
         # Create an RDS Proxy for the RDS instance
         self.rds_proxy = rds.DatabaseProxy(
             self,
@@ -72,11 +72,14 @@ class MySQLRdsInstance(Construct):
             idle_client_timeout=cdk.Duration.minutes(10),
             debug_logging=True,
             require_tls=True,
-            secrets=[self.db_secret]  # Use the fetched secret here
+            secrets=[db_secret],
+            # Use the fetched secret here
         )
+
 
         # Expose RDS instance, secret, and proxy attributes for access in other constructs
         self.db_proxy_endpoint = self.rds_proxy.endpoint
+
         # Expose the security group ID of the RDS Proxy
         self.db_proxy_sg_id = rds_security_group.security_group_id
 
