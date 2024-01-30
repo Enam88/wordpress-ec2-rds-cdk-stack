@@ -5,14 +5,20 @@ from aws_cdk import aws_iam as iam
 from aws_cdk import aws_autoscaling as autoscaling
 from constructs import Construct
 from lib.config import config  # Importing  config
+
+
 # from lib import scripts
 # from aws_cdk import aws_secretsmanager as secrets
 
 
 # Define the WordpressAutoScalingGroup class
 class WordpressAutoScalingGroup(Construct):
-    def __init__(self, scope: Construct, id: str, vpc: ec2.IVpc, db_proxy_endpoint: str,db_proxy_sg_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, id: str, vpc: ec2.IVpc, db_proxy_endpoint: str, db_proxy_sg_id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
+
+
+
+        
 
 
         key_pair_name = "demo-keypair"
@@ -49,11 +55,19 @@ class WordpressAutoScalingGroup(Construct):
         )
 
 
+        # User Data Script to configure the application with the RDS Proxy Endpoint
+        user_data_script = f"""#!/bin/bash
+        # Example commands to configure the application
+        echo "DB_HOST={db_proxy_endpoint}" >> /etc/myapp.conf
+        # More setup and configuration commands
+        """
 
 
-        # Read the user data script from wordpress_installation.sh
-        with open('.\lib\scripts\wordpress_install.sh', 'r') as file:
-            user_data_script = file.read()
+
+
+        # # Read the user data script from wordpress_installation.sh
+        # with open('.\lib\scripts\wordpress_install.sh', 'r') as file:
+        #     user_data_script = file.read()
 
 
 
@@ -74,7 +88,10 @@ class WordpressAutoScalingGroup(Construct):
                 max_capacity=2,
                 desired_capacity=1,
                 vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-                associate_public_ip_address=True
+                associate_public_ip_address=True,
+
+
+
                 # Additional configurations as needed
                 )
         
