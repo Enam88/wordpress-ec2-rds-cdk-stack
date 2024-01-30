@@ -21,6 +21,8 @@ class WordpressAutoScalingGroup(Construct):
             managed_policies=[
                 iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMManagedInstanceCore"),
                 iam.ManagedPolicy.from_aws_managed_policy_name("SecretsManagerReadWrite"),
+                iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMReadOnlyAccess"),  # Added policy
+
             ],
         )
 
