@@ -177,14 +177,14 @@
             "type": "aws:cdk:warning",
             "data": "desiredCapacity has been configured. Be aware this will reset the size of your AutoScalingGroup on every deployment. See https://github.com/aws/aws-cdk/issues/5215 [ack: @aws-cdk/aws-autoscaling:desiredCapacitySet]",
             "trace": [
-              "Annotations.addMessage (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-UCzlJI\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
-              "Annotations.addWarningV2 (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-UCzlJI\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
-              "new AutoScalingGroup (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-UCzlJI\\node_modules\\aws-cdk-lib\\aws-autoscaling\\lib\\auto-scaling-group.js:1:16025)",
-              "Kernel._Kernel_create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpvm1t1kr7\\lib\\program.js:10108:25)",
-              "Kernel.create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpvm1t1kr7\\lib\\program.js:9779:93)",
-              "KernelHost.processRequest (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpvm1t1kr7\\lib\\program.js:11699:36)",
-              "KernelHost.run (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpvm1t1kr7\\lib\\program.js:11659:22)",
-              "Immediate._onImmediate (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpvm1t1kr7\\lib\\program.js:11660:46)",
+              "Annotations.addMessage (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-QB7kuX\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addWarningV2 (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-QB7kuX\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
+              "new AutoScalingGroup (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-QB7kuX\\node_modules\\aws-cdk-lib\\aws-autoscaling\\lib\\auto-scaling-group.js:1:16025)",
+              "Kernel._Kernel_create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:10108:25)",
+              "Kernel.create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:9779:93)",
+              "KernelHost.processRequest (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:11699:36)",
+              "KernelHost.run (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:11659:22)",
+              "Immediate._onImmediate (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:11660:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
