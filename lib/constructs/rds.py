@@ -71,7 +71,7 @@ class MySQLRdsInstance(Construct):
             security_groups=[rds_security_group],
             idle_client_timeout=cdk.Duration.minutes(10),
             debug_logging=True,
-            require_tls=True,
+            require_tls=False,
             secrets=[db_secret],
             # Use the fetched secret here
         )

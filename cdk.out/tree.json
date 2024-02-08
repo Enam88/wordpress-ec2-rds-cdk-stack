@@ -12,13 +12,13 @@
             "id": "CustomVPC",
             "path": "WordpressEc2RdsStack/CustomVPC",
             "children": {
-              "wordpress-ec22-rds-devops-vpc": {
-                "id": "wordpress-ec22-rds-devops-vpc",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc",
+              "wordpress-ec22-rds-dev-vpc": {
+                "id": "wordpress-ec22-rds-dev-vpc",
+                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/Resource",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
                       "aws:cdk:cloudformation:props": {
@@ -29,7 +29,7 @@
                         "tags": [
                           {
                             "key": "Name",
-                            "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc"
+                            "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc"
                           }
                         ]
                       }
@@ -39,13 +39,13 @@
                       "version": "2.118.0"
                     }
                   },
-                  "wordpress-ec22-rds-devops-publicSubnet1": {
-                    "id": "wordpress-ec22-rds-devops-publicSubnet1",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1",
+                  "wordpress-ec22-rds-dev-publicSubnet1": {
+                    "id": "wordpress-ec22-rds-dev-publicSubnet1",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1",
                     "children": {
                       "Subnet": {
                         "id": "Subnet",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/Subnet",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1/Subnet",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                           "aws:cdk:cloudformation:props": {
@@ -62,7 +62,7 @@
                             "tags": [
                               {
                                 "key": "aws-cdk:subnet-name",
-                                "value": "wordpress-ec22-rds-devops-public"
+                                "value": "wordpress-ec22-rds-dev-public"
                               },
                               {
                                 "key": "aws-cdk:subnet-type",
@@ -70,11 +70,11 @@
                               },
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -85,7 +85,7 @@
                       },
                       "Acl": {
                         "id": "Acl",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/Acl",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1/Acl",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.118.0"
@@ -93,18 +93,18 @@
                       },
                       "RouteTable": {
                         "id": "RouteTable",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/RouteTable",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1/RouteTable",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
                           "aws:cdk:cloudformation:props": {
                             "tags": [
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -115,15 +115,15 @@
                       },
                       "RouteTableAssociation": {
                         "id": "RouteTableAssociation",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/RouteTableAssociation",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1/RouteTableAssociation",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
                           "aws:cdk:cloudformation:props": {
                             "routeTableId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1RouteTable8D5C60AC"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet1RouteTable03B3DFBD"
                             },
                             "subnetId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1SubnetD17D304F"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet1Subnet9A309B10"
                             }
                           }
                         },
@@ -134,69 +134,21 @@
                       },
                       "DefaultRoute": {
                         "id": "DefaultRoute",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/DefaultRoute",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet1/DefaultRoute",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Route",
                           "aws:cdk:cloudformation:props": {
                             "destinationCidrBlock": "0.0.0.0/0",
                             "gatewayId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcIGW96797E70"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcIGW6A01DED7"
                             },
                             "routeTableId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1RouteTable8D5C60AC"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet1RouteTable03B3DFBD"
                             }
                           }
                         },
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
-                          "version": "2.118.0"
-                        }
-                      },
-                      "EIP": {
-                        "id": "EIP",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/EIP",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
-                          "aws:cdk:cloudformation:props": {
-                            "domain": "vpc",
-                            "tags": [
-                              {
-                                "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnEIP",
-                          "version": "2.118.0"
-                        }
-                      },
-                      "NATGateway": {
-                        "id": "NATGateway",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1/NATGateway",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
-                          "aws:cdk:cloudformation:props": {
-                            "allocationId": {
-                              "Fn::GetAtt": [
-                                "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1EIP76632B7E",
-                                "AllocationId"
-                              ]
-                            },
-                            "subnetId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1SubnetD17D304F"
-                            },
-                            "tags": [
-                              {
-                                "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet1"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNatGateway",
                           "version": "2.118.0"
                         }
                       }
@@ -206,13 +158,13 @@
                       "version": "2.118.0"
                     }
                   },
-                  "wordpress-ec22-rds-devops-publicSubnet2": {
-                    "id": "wordpress-ec22-rds-devops-publicSubnet2",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2",
+                  "wordpress-ec22-rds-dev-publicSubnet2": {
+                    "id": "wordpress-ec22-rds-dev-publicSubnet2",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2",
                     "children": {
                       "Subnet": {
                         "id": "Subnet",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2/Subnet",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2/Subnet",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                           "aws:cdk:cloudformation:props": {
@@ -229,7 +181,7 @@
                             "tags": [
                               {
                                 "key": "aws-cdk:subnet-name",
-                                "value": "wordpress-ec22-rds-devops-public"
+                                "value": "wordpress-ec22-rds-dev-public"
                               },
                               {
                                 "key": "aws-cdk:subnet-type",
@@ -237,11 +189,11 @@
                               },
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -252,7 +204,7 @@
                       },
                       "Acl": {
                         "id": "Acl",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2/Acl",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2/Acl",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.118.0"
@@ -260,18 +212,18 @@
                       },
                       "RouteTable": {
                         "id": "RouteTable",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2/RouteTable",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2/RouteTable",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
                           "aws:cdk:cloudformation:props": {
                             "tags": [
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -282,15 +234,15 @@
                       },
                       "RouteTableAssociation": {
                         "id": "RouteTableAssociation",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2/RouteTableAssociation",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2/RouteTableAssociation",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
                           "aws:cdk:cloudformation:props": {
                             "routeTableId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet2RouteTableC831F498"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet2RouteTableE18DA705"
                             },
                             "subnetId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet2SubnetB38C0CA8"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet2SubnetE2428331"
                             }
                           }
                         },
@@ -301,16 +253,16 @@
                       },
                       "DefaultRoute": {
                         "id": "DefaultRoute",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-publicSubnet2/DefaultRoute",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-publicSubnet2/DefaultRoute",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Route",
                           "aws:cdk:cloudformation:props": {
                             "destinationCidrBlock": "0.0.0.0/0",
                             "gatewayId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcIGW96797E70"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcIGW6A01DED7"
                             },
                             "routeTableId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet2RouteTableC831F498"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet2RouteTableE18DA705"
                             }
                           }
                         },
@@ -325,13 +277,13 @@
                       "version": "2.118.0"
                     }
                   },
-                  "wordpress-ec22-rds-devops-isolatedSubnet1": {
-                    "id": "wordpress-ec22-rds-devops-isolatedSubnet1",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1",
+                  "wordpress-ec22-rds-dev-isolatedSubnet1": {
+                    "id": "wordpress-ec22-rds-dev-isolatedSubnet1",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1",
                     "children": {
                       "Subnet": {
                         "id": "Subnet",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1/Subnet",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1/Subnet",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                           "aws:cdk:cloudformation:props": {
@@ -348,7 +300,7 @@
                             "tags": [
                               {
                                 "key": "aws-cdk:subnet-name",
-                                "value": "wordpress-ec22-rds-devops-isolated"
+                                "value": "wordpress-ec22-rds-dev-isolated"
                               },
                               {
                                 "key": "aws-cdk:subnet-type",
@@ -356,11 +308,11 @@
                               },
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -371,7 +323,7 @@
                       },
                       "Acl": {
                         "id": "Acl",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1/Acl",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1/Acl",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.118.0"
@@ -379,18 +331,18 @@
                       },
                       "RouteTable": {
                         "id": "RouteTable",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1/RouteTable",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1/RouteTable",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
                           "aws:cdk:cloudformation:props": {
                             "tags": [
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -401,15 +353,15 @@
                       },
                       "RouteTableAssociation": {
                         "id": "RouteTableAssociation",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet1/RouteTableAssociation",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet1/RouteTableAssociation",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
                           "aws:cdk:cloudformation:props": {
                             "routeTableId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet1RouteTableE81A84F8"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet1RouteTableE6585B3B"
                             },
                             "subnetId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet1Subnet7C6C2938"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet1Subnet35967B6F"
                             }
                           }
                         },
@@ -424,13 +376,13 @@
                       "version": "2.118.0"
                     }
                   },
-                  "wordpress-ec22-rds-devops-isolatedSubnet2": {
-                    "id": "wordpress-ec22-rds-devops-isolatedSubnet2",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2",
+                  "wordpress-ec22-rds-dev-isolatedSubnet2": {
+                    "id": "wordpress-ec22-rds-dev-isolatedSubnet2",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2",
                     "children": {
                       "Subnet": {
                         "id": "Subnet",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2/Subnet",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2/Subnet",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
                           "aws:cdk:cloudformation:props": {
@@ -447,7 +399,7 @@
                             "tags": [
                               {
                                 "key": "aws-cdk:subnet-name",
-                                "value": "wordpress-ec22-rds-devops-isolated"
+                                "value": "wordpress-ec22-rds-dev-isolated"
                               },
                               {
                                 "key": "aws-cdk:subnet-type",
@@ -455,11 +407,11 @@
                               },
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -470,7 +422,7 @@
                       },
                       "Acl": {
                         "id": "Acl",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2/Acl",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2/Acl",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.Resource",
                           "version": "2.118.0"
@@ -478,18 +430,18 @@
                       },
                       "RouteTable": {
                         "id": "RouteTable",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2/RouteTable",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2/RouteTable",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
                           "aws:cdk:cloudformation:props": {
                             "tags": [
                               {
                                 "key": "Name",
-                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2"
+                                "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2"
                               }
                             ],
                             "vpcId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                             }
                           }
                         },
@@ -500,15 +452,15 @@
                       },
                       "RouteTableAssociation": {
                         "id": "RouteTableAssociation",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/wordpress-ec22-rds-devops-isolatedSubnet2/RouteTableAssociation",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/wordpress-ec22-rds-dev-isolatedSubnet2/RouteTableAssociation",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
                           "aws:cdk:cloudformation:props": {
                             "routeTableId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet2RouteTable0663EEB6"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet2RouteTableBA998FB2"
                             },
                             "subnetId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet2SubnetAEED1E93"
+                              "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet2SubnetD9D1F041"
                             }
                           }
                         },
@@ -525,14 +477,14 @@
                   },
                   "IGW": {
                     "id": "IGW",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/IGW",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/IGW",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
                       "aws:cdk:cloudformation:props": {
                         "tags": [
                           {
                             "key": "Name",
-                            "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc"
+                            "value": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc"
                           }
                         ]
                       }
@@ -544,15 +496,15 @@
                   },
                   "VPCGW": {
                     "id": "VPCGW",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/VPCGW",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/VPCGW",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
                       "aws:cdk:cloudformation:props": {
                         "internetGatewayId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcIGW96797E70"
+                          "Ref": "CustomVPCwordpressec22rdsdevvpcIGW6A01DED7"
                         },
                         "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                          "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                         }
                       }
                     },
@@ -563,11 +515,11 @@
                   },
                   "RestrictDefaultSecurityGroupCustomResource": {
                     "id": "RestrictDefaultSecurityGroupCustomResource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/RestrictDefaultSecurityGroupCustomResource",
+                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/RestrictDefaultSecurityGroupCustomResource",
                     "children": {
                       "Default": {
                         "id": "Default",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-vpc/RestrictDefaultSecurityGroupCustomResource/Default",
+                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-dev-vpc/RestrictDefaultSecurityGroupCustomResource/Default",
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.CfnResource",
                           "version": "2.118.0"
@@ -582,466 +534,6 @@
                 },
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.aws_ec2.Vpc",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-public-nacl": {
-                "id": "wordpress-ec22-rds-devops-public-nacl",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAcl",
-                      "aws:cdk:cloudformation:props": {
-                        "tags": [
-                          {
-                            "key": "Name",
-                            "value": "wordpress-ec22-rds-devops-public-nacl"
-                          }
-                        ],
-                        "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAcl",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "InboundEphemeral": {
-                    "id": "InboundEphemeral",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundEphemeral",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundEphemeral/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": false,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 1024,
-                              "to": 65535
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 100
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "InboundHTTP": {
-                    "id": "InboundHTTP",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundHTTP",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundHTTP/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": false,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 80,
-                              "to": 80
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 110
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "InboundHTTPS": {
-                    "id": "InboundHTTPS",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundHTTPS",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundHTTPS/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": false,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 443,
-                              "to": 443
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 120
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "InboundSSH": {
-                    "id": "InboundSSH",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundSSH",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/InboundSSH/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": false,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 22,
-                              "to": 22
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 130
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "OutboundEphemeral": {
-                    "id": "OutboundEphemeral",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundEphemeral",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundEphemeral/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": true,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 1024,
-                              "to": 65535
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 100
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "OutboundHTTP": {
-                    "id": "OutboundHTTP",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundHTTP",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundHTTP/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": true,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 80,
-                              "to": 80
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 110
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "OutboundHTTPS": {
-                    "id": "OutboundHTTPS",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundHTTPS",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundHTTPS/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": true,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 443,
-                              "to": 443
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 120
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "OutboundSSH": {
-                    "id": "OutboundSSH",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundSSH",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-public-nacl/OutboundSSH/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAclEntry",
-                          "aws:cdk:cloudformation:props": {
-                            "cidrBlock": "0.0.0.0/0",
-                            "egress": true,
-                            "networkAclId": {
-                              "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                            },
-                            "portRange": {
-                              "from": 22,
-                              "to": 22
-                            },
-                            "protocol": 6,
-                            "ruleAction": "allow",
-                            "ruleNumber": 130
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAclEntry",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.NetworkAclEntry",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.NetworkAcl",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-private-nacl": {
-                "id": "wordpress-ec22-rds-devops-private-nacl",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-private-nacl",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-private-nacl/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::NetworkAcl",
-                      "aws:cdk:cloudformation:props": {
-                        "tags": [
-                          {
-                            "key": "Name",
-                            "value": "wordpress-ec22-rds-devops-private-nacl"
-                          }
-                        ],
-                        "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnNetworkAcl",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.NetworkAcl",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet1": {
-                "id": "wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet1",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet1",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet1/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetNetworkAclAssociation",
-                      "aws:cdk:cloudformation:props": {
-                        "networkAclId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                        },
-                        "subnetId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1SubnetD17D304F"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetNetworkAclAssociation",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.SubnetNetworkAclAssociation",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet2": {
-                "id": "wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet2",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet2",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PublicSubnetAssociationwordpress-ec22-rds-devops-publicSubnet2/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetNetworkAclAssociation",
-                      "aws:cdk:cloudformation:props": {
-                        "networkAclId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopspublicnacl510A1414"
-                        },
-                        "subnetId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet2SubnetB38C0CA8"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetNetworkAclAssociation",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.SubnetNetworkAclAssociation",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet1": {
-                "id": "wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet1",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet1",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet1/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetNetworkAclAssociation",
-                      "aws:cdk:cloudformation:props": {
-                        "networkAclId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsprivatenaclE9228D1C"
-                        },
-                        "subnetId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet1Subnet7C6C2938"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetNetworkAclAssociation",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.SubnetNetworkAclAssociation",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet2": {
-                "id": "wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet2",
-                "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet2",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/CustomVPC/wordpress-ec22-rds-devops-PrivateSubnetAssociationwordpress-ec22-rds-devops-isolatedSubnet2/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetNetworkAclAssociation",
-                      "aws:cdk:cloudformation:props": {
-                        "networkAclId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsprivatenaclE9228D1C"
-                        },
-                        "subnetId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet2SubnetAEED1E93"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetNetworkAclAssociation",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.SubnetNetworkAclAssociation",
                   "version": "2.118.0"
                 }
               }
@@ -1083,369 +575,6 @@
             "constructInfo": {
               "fqn": "aws-cdk-lib.CustomResourceProviderBase",
               "version": "2.118.0"
-            }
-          },
-          "MySQLRdsInstance": {
-            "id": "MySQLRdsInstance",
-            "path": "WordpressEc2RdsStack/MySQLRdsInstance",
-            "children": {
-              "DbSecret": {
-                "id": "DbSecret",
-                "path": "WordpressEc2RdsStack/MySQLRdsInstance/DbSecret",
-                "children": {
-                  "Attachment": {
-                    "id": "Attachment",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/DbSecret/Attachment",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/DbSecret/Attachment/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::SecretsManager::SecretTargetAttachment",
-                          "aws:cdk:cloudformation:props": {
-                            "secretId": "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL",
-                            "targetId": {
-                              "Ref": "MySQLRdsInstancewordpressec22rdsdevopsMySqlRDSInstanceD11100A2"
-                            },
-                            "targetType": "AWS::RDS::DBInstance"
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_secretsmanager.CfnSecretTargetAttachment",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_secretsmanager.SecretTargetAttachment",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.Resource",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-rds-sg": {
-                "id": "wordpress-ec22-rds-devops-rds-sg",
-                "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-sg",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-sg/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
-                      "aws:cdk:cloudformation:props": {
-                        "groupDescription": "Security group for RDS instance",
-                        "securityGroupEgress": [
-                          {
-                            "cidrIp": "0.0.0.0/0",
-                            "description": "Allow all outbound traffic by default",
-                            "ipProtocol": "-1"
-                          }
-                        ],
-                        "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "from WordpressEc2RdsStackMySQLRdsInstancewordpressec22rdsdevopsrdssgEDC72BC4:{IndirectPort}": {
-                    "id": "from WordpressEc2RdsStackMySQLRdsInstancewordpressec22rdsdevopsrdssgEDC72BC4:{IndirectPort}",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-sg/from WordpressEc2RdsStackMySQLRdsInstancewordpressec22rdsdevopsrdssgEDC72BC4:{IndirectPort}",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
-                      "aws:cdk:cloudformation:props": {
-                        "description": "Allow connections to the database Instance from the Proxy",
-                        "fromPort": {
-                          "Fn::GetAtt": [
-                            "MySQLRdsInstancewordpressec22rdsdevopsMySqlRDSInstanceD11100A2",
-                            "Endpoint.Port"
-                          ]
-                        },
-                        "groupId": {
-                          "Fn::GetAtt": [
-                            "MySQLRdsInstancewordpressec22rdsdevopsrdssgE6ABFD02",
-                            "GroupId"
-                          ]
-                        },
-                        "ipProtocol": "tcp",
-                        "sourceSecurityGroupId": {
-                          "Fn::GetAtt": [
-                            "MySQLRdsInstancewordpressec22rdsdevopsrdssgE6ABFD02",
-                            "GroupId"
-                          ]
-                        },
-                        "toPort": {
-                          "Fn::GetAtt": [
-                            "MySQLRdsInstancewordpressec22rdsdevopsMySqlRDSInstanceD11100A2",
-                            "Endpoint.Port"
-                          ]
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-MySqlRDSInstance": {
-                "id": "wordpress-ec22-rds-devops-MySqlRDSInstance",
-                "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-MySqlRDSInstance",
-                "children": {
-                  "SubnetGroup": {
-                    "id": "SubnetGroup",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-MySqlRDSInstance/SubnetGroup",
-                    "children": {
-                      "Default": {
-                        "id": "Default",
-                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-MySqlRDSInstance/SubnetGroup/Default",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::RDS::DBSubnetGroup",
-                          "aws:cdk:cloudformation:props": {
-                            "dbSubnetGroupDescription": "Subnet group for wordpress-ec22-rds-devops-MySqlRDSInstance database",
-                            "subnetIds": [
-                              {
-                                "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet1Subnet7C6C2938"
-                              },
-                              {
-                                "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet2SubnetAEED1E93"
-                              }
-                            ]
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_rds.CfnDBSubnetGroup",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_rds.SubnetGroup",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-MySqlRDSInstance/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
-                      "aws:cdk:cloudformation:props": {
-                        "allocatedStorage": "20",
-                        "backupRetentionPeriod": 7,
-                        "copyTagsToSnapshot": true,
-                        "dbInstanceClass": "db.t2.micro",
-                        "dbSubnetGroupName": {
-                          "Ref": "MySQLRdsInstancewordpressec22rdsdevopsMySqlRDSInstanceSubnetGroupB21104C1"
-                        },
-                        "deletionProtection": false,
-                        "engine": "mysql",
-                        "engineVersion": "8.0",
-                        "masterUsername": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL:SecretString:username::}}",
-                        "masterUserPassword": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL:SecretString:password::}}",
-                        "publiclyAccessible": false,
-                        "storageType": "gp2",
-                        "vpcSecurityGroups": [
-                          {
-                            "Fn::GetAtt": [
-                              "MySQLRdsInstancewordpressec22rdsdevopsrdssgE6ABFD02",
-                              "GroupId"
-                            ]
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_rds.CfnDBInstance",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_rds.DatabaseInstance",
-                  "version": "2.118.0"
-                }
-              },
-              "wordpress-ec22-rds-devops-rds-proxy": {
-                "id": "wordpress-ec22-rds-devops-rds-proxy",
-                "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy",
-                "children": {
-                  "IAMRole": {
-                    "id": "IAMRole",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/IAMRole",
-                    "children": {
-                      "ImportIAMRole": {
-                        "id": "ImportIAMRole",
-                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/IAMRole/ImportIAMRole",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.Resource",
-                          "version": "2.118.0"
-                        }
-                      },
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/IAMRole/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
-                          "aws:cdk:cloudformation:props": {
-                            "assumeRolePolicyDocument": {
-                              "Statement": [
-                                {
-                                  "Action": "sts:AssumeRole",
-                                  "Effect": "Allow",
-                                  "Principal": {
-                                    "Service": "rds.amazonaws.com"
-                                  }
-                                }
-                              ],
-                              "Version": "2012-10-17"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
-                          "version": "2.118.0"
-                        }
-                      },
-                      "DefaultPolicy": {
-                        "id": "DefaultPolicy",
-                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/IAMRole/DefaultPolicy",
-                        "children": {
-                          "Resource": {
-                            "id": "Resource",
-                            "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/IAMRole/DefaultPolicy/Resource",
-                            "attributes": {
-                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
-                              "aws:cdk:cloudformation:props": {
-                                "policyDocument": {
-                                  "Statement": [
-                                    {
-                                      "Action": [
-                                        "secretsmanager:DescribeSecret",
-                                        "secretsmanager:GetSecretValue"
-                                      ],
-                                      "Effect": "Allow",
-                                      "Resource": "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL"
-                                    }
-                                  ],
-                                  "Version": "2012-10-17"
-                                },
-                                "policyName": "MySQLRdsInstancewordpressec22rdsdevopsrdsproxyIAMRoleDefaultPolicy8C2ACFF4",
-                                "roles": [
-                                  {
-                                    "Ref": "MySQLRdsInstancewordpressec22rdsdevopsrdsproxyIAMRoleCE068BB8"
-                                  }
-                                ]
-                              }
-                            },
-                            "constructInfo": {
-                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
-                              "version": "2.118.0"
-                            }
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_iam.Policy",
-                          "version": "2.118.0"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_iam.Role",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::RDS::DBProxy",
-                      "aws:cdk:cloudformation:props": {
-                        "auth": [
-                          {
-                            "authScheme": "SECRETS",
-                            "iamAuth": "DISABLED",
-                            "secretArn": "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL"
-                          }
-                        ],
-                        "dbProxyName": "WordpressEc2RdsStackMySQLRpressec22rdsdevopsrdsproxy20084047",
-                        "debugLogging": true,
-                        "engineFamily": "MYSQL",
-                        "idleClientTimeout": 600,
-                        "requireTls": true,
-                        "roleArn": {
-                          "Fn::GetAtt": [
-                            "MySQLRdsInstancewordpressec22rdsdevopsrdsproxyIAMRoleCE068BB8",
-                            "Arn"
-                          ]
-                        },
-                        "vpcSecurityGroupIds": [
-                          {
-                            "Fn::GetAtt": [
-                              "MySQLRdsInstancewordpressec22rdsdevopsrdssgE6ABFD02",
-                              "GroupId"
-                            ]
-                          }
-                        ],
-                        "vpcSubnetIds": [
-                          {
-                            "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet1Subnet7C6C2938"
-                          },
-                          {
-                            "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopsisolatedSubnet2SubnetAEED1E93"
-                          }
-                        ]
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_rds.CfnDBProxy",
-                      "version": "2.118.0"
-                    }
-                  },
-                  "ProxyTargetGroup": {
-                    "id": "ProxyTargetGroup",
-                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-devops-rds-proxy/ProxyTargetGroup",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::RDS::DBProxyTargetGroup",
-                      "aws:cdk:cloudformation:props": {
-                        "connectionPoolConfigurationInfo": {},
-                        "dbInstanceIdentifiers": [
-                          {
-                            "Ref": "MySQLRdsInstancewordpressec22rdsdevopsMySqlRDSInstanceD11100A2"
-                          }
-                        ],
-                        "dbProxyName": {
-                          "Ref": "MySQLRdsInstancewordpressec22rdsdevopsrdsproxy0963C44C"
-                        },
-                        "targetGroupName": "default"
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_rds.CfnDBProxyTargetGroup",
-                      "version": "2.118.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_rds.DatabaseProxy",
-                  "version": "2.118.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "constructs.Construct",
-              "version": "10.3.0"
             }
           },
           "WordpressAutoScalingGroup": {
@@ -1506,6 +635,18 @@
                                 ":iam::aws:policy/SecretsManagerReadWrite"
                               ]
                             ]
+                          },
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/AmazonSSMReadOnlyAccess"
+                              ]
+                            ]
                           }
                         ]
                       }
@@ -1559,11 +700,11 @@
                             "ipProtocol": "tcp",
                             "fromPort": 22,
                             "toPort": 22,
-                            "description": "Allow ssh access "
+                            "description": "Allow SSH access"
                           }
                         ],
                         "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                          "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                         }
                       }
                     },
@@ -1572,9 +713,9 @@
                       "version": "2.118.0"
                     }
                   },
-                  "from WordpressEc2RdsStackWordpressApplicationLoadBalancerwordpressec22rdsdevopsALBSecurityGroup266DD490:80": {
-                    "id": "from WordpressEc2RdsStackWordpressApplicationLoadBalancerwordpressec22rdsdevopsALBSecurityGroup266DD490:80",
-                    "path": "WordpressEc2RdsStack/WordpressAutoScalingGroup/wordpress-instances-sg/from WordpressEc2RdsStackWordpressApplicationLoadBalancerwordpressec22rdsdevopsALBSecurityGroup266DD490:80",
+                  "from WordpressEc2RdsStackWordpressApplicationLoadBalancerwordpressec22rdsdevALBSecurityGroup564A9AAA:80": {
+                    "id": "from WordpressEc2RdsStackWordpressApplicationLoadBalancerwordpressec22rdsdevALBSecurityGroup564A9AAA:80",
+                    "path": "WordpressEc2RdsStack/WordpressAutoScalingGroup/wordpress-instances-sg/from WordpressEc2RdsStackWordpressApplicationLoadBalancerwordpressec22rdsdevALBSecurityGroup564A9AAA:80",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
                       "aws:cdk:cloudformation:props": {
@@ -1589,7 +730,7 @@
                         "ipProtocol": "tcp",
                         "sourceSecurityGroupId": {
                           "Fn::GetAtt": [
-                            "WordpressApplicationLoadBalancerwordpressec22rdsdevopsALBSecurityGroup576EFF9B",
+                            "WordpressApplicationLoadBalancerwordpressec22rdsdevALBSecurityGroup414BACD9",
                             "GroupId"
                           ]
                         },
@@ -1685,7 +826,7 @@
                                 }
                               ],
                               "userData": {
-                                "Fn::Base64": "#!/usr/bin/env bash\n\n# Author: @11808s8 - Adriano\n# Email: adrianogsss@gmail.com\n# Version: 1.1.0 - 07/04/2020\n#\n# @TODO: Refactor this, breaking parts into modules\n# and include more comments/User feedbacks\n#\n# @TODO: Remove hardcoded credentials\n# \n# !READ THIS! you should change the root credentials\n#  and wordpress credentials accordingly.\n#  This script needs to be refined in order to be\n#  reproducible on a production environment.\n#\n# YOU CAN UPLOAD THIS ON YOUR USER DATA CONFIG FOR LAUNCHING AN INSTANCE\n# NO NEED TO RUN IT INSIDE YOUR INSTANCE !!!\n# (but you can run this inside your AWS EC2 instance if you want lol who am I to judge)\n#\n\nsudo yum update -y\n\n# Install necessary packages\n\nsudo yum install mariadb-server.x86_64 -y\nsudo amazon-linux-extras install nginx1\nsudo amazon-linux-extras install php7.2\n\n# Start the processes\nsudo systemctl enable mariadb \nsudo systemctl start mariadb \nsudo systemctl enable nginx \nsudo systemctl start nginx \nsudo systemctl enable php-fpm \nsudo systemctl start php-fpm \n\n# Configure the processes to start when the instance boots up\nsudo chkconfig php-fpm on\nsudo chkconfig nginx on\nsudo chkconfig mariadb on\n\n# Switch the APACHE lines on php-fpm (default ones) for nginx specific ones\nsudo sed -i 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf\nsudo sed -i 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf\n\n# Create the www dir\nsudo mkdir /var/www/\n\n# Permission for us to download wordpress\nsudo chown ec2-user:ec2-user /var/www/\ncd /var/www/\n\n# Download and extraction of wordpress\nwget http://wordpress.org/latest.tar.gz\ntar -xvf latest.tar.gz\nrm latest.tar.gz\ncd /var/\n\n# Permission to nginx to use /var/www/\nsudo chown -R nginx:nginx /var/www/\n\nsudo systemctl stop mariadb\nsudo mysql_install_db\nsudo systemctl start mariadb\n\n\n# Deprecated! \n#sudo mysql_secure_installation\n\n\n# Adapted from here: https://bertvv.github.io/notes-to-self/2015/11/16/automating-mysql_secure_installation/\n\nmysql --user=root <<EOF\nUSE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE User='root' AND Host = 'localhost';\nDELETE FROM mysql.user WHERE User='';\nDELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');\nDROP DATABASE IF EXISTS test;\nDELETE FROM mysql.db WHERE Db='test' OR Db='test\\\\_%';\nFLUSH PRIVILEGES;\nEOF\n\n# ---\n\n# CREATING THE DB\nsudo mysqladmin -u 'root' -proot create 'wordpress'\n# cd /tmp/\n\n# ---- Deprecated ----\n# CREATING THE WORDPRESS USER AND PASSWORD\n# echo 'CREATE USER wordpress@localhost IDENTIFIED BY \"wordpresspass\";\n# GRANT ALL PRIVILEGES ON wordpress.* to wordpress@localhost;' > mysql_wordpress_setup.sql\n# sudo mysql -u root -proot wordpress < mysql_wordpress_setup.sql\n# rm mysql_wordpress_setup.sql\n# ---- ---------- ----\n\nmysql --user=root -proot <<EOF\nCREATE USER wordpress@localhost IDENTIFIED BY \"wordpresspass\";\nGRANT ALL PRIVILEGES ON wordpress.* to wordpress@localhost;\nEOF\n\n# ---\n\n# NGINX configuration for the server block! (vhost)\n\ncd /tmp/\nsudo echo \"server {\n    listen 80 default_server;\n    listen [::]:80 default_server;\n    server_name wordpress;\n    root /var/www/wordpress;\n    index index.php;\n    # Load configuration files for the default server block.\n    include /etc/nginx/default.d/*.conf;\n}\" > wordpress.conf\nsudo chown root:root wordpress.conf\nsudo chmod 644 wordpress.conf\nsudo mv wordpress.conf /etc/nginx/conf.d/\n\n\nsudo echo \"\n# For more information on configuration, see:\n#   * Official English Documentation: http://nginx.org/en/docs/\n#   * Official Russian Documentation: http://nginx.org/ru/docs/\nuser nginx;\nworker_processes auto;\nerror_log /var/log/nginx/error.log;\npid /run/nginx.pid;\n# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.\ninclude /usr/share/nginx/modules/*.conf;\nevents {\n    worker_connections 1024;\n}\nhttp {\n    log_format  main  '$remote_addr - $remote_user [$time_local] \\\"$request\\\" '\n                      '$status $body_bytes_sent \\\"$http_referer\\\" '\n                      '\\\"$http_user_agent\\\" \\\"$http_x_forwarded_for\\\"';\n    access_log  /var/log/nginx/access.log  main;\n    sendfile            on;\n    tcp_nopush          on;\n    tcp_nodelay         on;\n    keepalive_timeout   65;\n    types_hash_max_size 2048;\n    include             /etc/nginx/mime.types;\n    default_type        application/octet-stream;\n    # Load modular configuration files from the /etc/nginx/conf.d directory.\n    # See http://nginx.org/en/docs/ngx_core_module.html#include\n    # for more information.\n    include /etc/nginx/conf.d/*.conf;\n#    server {\n#        listen       80 default_server;\n#        listen       [::]:80 default_server;\n#        server_name  _;\n#        root         /usr/share/nginx/html;\n#\n#        # Load configuration files for the default server block.\n#        include /etc/nginx/default.d/*.conf;\n#\n#        location / {\n#        }\n#\n#        error_page 404 /404.html;\n#            location = /40x.html {\n#        }\n#\n#        error_page 500 502 503 504 /50x.html;\n#            location = /50x.html {\n#        }\n#    }\n# Settings for a TLS enabled server.\n#\n#    server {\n#        listen       443 ssl http2 default_server;\n#        listen       [::]:443 ssl http2 default_server;\n#        server_name  _;\n#        root         /usr/share/nginx/html;\n#\n#        ssl_certificate \\\"/etc/pki/nginx/server.crt\\\";\n#        ssl_certificate_key \\\"/etc/pki/nginx/private/server.key\\\";\n#        ssl_session_cache shared:SSL:1m;\n#        ssl_session_timeout  10m;\n#        ssl_ciphers PROFILE=SYSTEM;\n#        ssl_prefer_server_ciphers on;\n#\n#        # Load configuration files for the default server block.\n#        include /etc/nginx/default.d/*.conf;\n#\n#        location / {\n#        }\n#\n#        error_page 404 /404.html;\n#            location = /40x.html {\n#        }\n#\n#        error_page 500 502 503 504 /50x.html;\n#            location = /50x.html {\n#        }\n#    }\n}\n\" > nginx.conf\n\nsudo chown root:root nginx.conf\nsudo chmod 644 nginx.conf\nsudo mv nginx.conf /etc/nginx/\n\n# The cherry on top\nsudo service nginx restart\nsudo service php-fpm restart\nsudo service mariadb restart"
+                                "Fn::Base64": "#!/bin/bash\n\nsudo yum -y update\nsudo yum -y install httpd php php-cli php-mysql jq mysql mysqladmin\n\n# Fetch RDS Proxy Endpoint and Security Group ID from Parameter Store\nDB_HOST=$(aws ssm get-parameter --name '/myapp/rds/proxy-endpoint' --query 'Parameter.Value' --output text)\nDB_PROXY_SG_ID=$(aws ssm get-parameter --name '/myapp/rds/proxy-sg-id' --query 'Parameter.Value' --output text)\n\n# Example commands to configure the application\necho \"DB_HOST=${DB_HOST}\" >> /etc/myapp.conf\n# More setup and configuration commands\n\n# Retrieve DB credentials from AWS Secrets Manager\nDB_CREDENTIALS=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL --query SecretString --output text --region eu-west-3)\nDB_USER=$(echo $DB_CREDENTIALS | jq -r .username)\nDB_PASS=$(echo $DB_CREDENTIALS | jq -r .password)\nDB_HOST=\"wordpressec2rdsstackmysqlrordpressec22rdsdevrdsproxy76063ecf.proxy-ctolmm4tg8qx.eu-west-3.rds.amazonaws.com\"\nDB_PORT=$(echo $DB_CREDENTIALS | jq -r .port)\n\n\n\n\nsudo amazon-linux-extras install php7.4 -y\nsudo service httpd start\n\n\n# Install WordPress CLI\ncurl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar\nchmod +x wp-cli.phar\nsudo mv wp-cli.phar /usr/local/bin/wp\n\nWP_CREDENTIALS=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-3:943240599753:secret:WordpressAdminCredentials-bHpFRX --query SecretString --output text --region eu-west-3)\nWP_ADMIN_USER=$(echo $WP_CREDENTIALS | jq -r .username)              # Replace with your admin username\nWP_ADMIN_PASSWORD=$(echo $WP_CREDENTIALS | jq -r .password)      # Replace with your admin password\nWP_ADMIN_EMAIL==$(echo $WP_CREDENTIALS | jq -r .email)   # Replace with your admin email\n\n# Set up WordPress\nWP_SITE_INSTALL_PATH=\"/var/www/html\" # Replace with your actual installation path\nWP_SITE_TITLE=\"Team-3 WordPress Site\"    # Replace with your site title\nWP_ADMIN_USER=\"admin\"                # Replace with your admin username\nWP_ADMIN_PASSWORD=\"password8888#$%\"         # Replace with your admin password\nWP_ADMIN_EMAIL=\"admin@example.com\"   # Replace with your admin email\nWP_SITE_BASE_DOMAIN=\"example.com\"  # Replace 'example.com' with your actual domain or IP address later\n\n\n# Set the MYSQL_PWD environment variable for the current session\nexport MYSQL_PWD=$DB_PASS\n\nmysql --user=DB_USER --password=DB_PASS --host=wordpressec2rdsstackmysqlrordpressec22rdsdevrdsproxy76063ecf.proxy-ctolmm4tg8qx.eu-west-3.rds.amazonaws.com ssl-mode=REQUIRED DB_NAME\n\n\n# Create database and grant privileges using MySQL commands\nmysql -h $DB_HOST -u $DB_USER -e \"CREATE DATABASE IF NOT EXISTS $DB_NAME;\"\nmysql -h $DB_HOST -u $DB_USER -e \"GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%'; FLUSH PRIVILEGES;\"\n\n# Unset the MYSQL_PWD environment variable after use\n# unset MYSQL_PWD\n\nCREATE DATABASE wordpress;\nGRANT ALL PRIVILEGES ON wordpress.* TO 'admin'@'%';\nFLUSH PRIVILEGES;\nexit\n\n# Download WP Core\nsudo /usr/local/bin/wp core download --path=$WP_SITE_INSTALL_PATH\n\n# Generate the wp-config.php file\nsudo /usr/local/bin/wp core config --path=$WP_SITE_INSTALL_PATH --dbname=wordpress --dbuser=$DB_USER --dbpass=$DB_PASS --dbhost=$DB_HOST:$DB_PORT --extra-php <<PHP\ndefine('WP_DEBUG', true);\ndefine('WP_DEBUG_LOG', true);\ndefine('WP_DEBUG_DISPLAY', true);\ndefine('WP_MEMORY_LIMIT', '256M');\nPHP\n\n# Install WordPress\nsudo /usr/local/bin/wp core install --path=$WP_SITE_INSTALL_PATH --url=\"http://localhost\" --title=\"$WP_SITE_TITLE\" --admin_user=\"$WP_ADMIN_USER\" --admin_password=\"$WP_ADMIN_PASSWORD\" --admin_email=\"$WP_ADMIN_EMAIL\"\n\nsudo service httpd restart\n\n"
                               },
                               "networkInterfaces": [
                                 {
@@ -1755,21 +896,54 @@
                         ],
                         "targetGroupArns": [
                           {
-                            "Ref": "WordpressApplicationLoadBalancerwordpressec22rdsdevopsTargetGroupBE70F932"
+                            "Ref": "WordpressApplicationLoadBalancerwordpressec22rdsdevTargetGroupCFAF664D"
                           }
                         ],
                         "vpcZoneIdentifier": [
                           {
-                            "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1SubnetD17D304F"
+                            "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet1Subnet9A309B10"
                           },
                           {
-                            "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet2SubnetB38C0CA8"
+                            "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet2SubnetE2428331"
                           }
                         ]
                       }
                     },
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_autoscaling.CfnAutoScalingGroup",
+                      "version": "2.118.0"
+                    }
+                  },
+                  "ScalingPolicyCpuScaling": {
+                    "id": "ScalingPolicyCpuScaling",
+                    "path": "WordpressEc2RdsStack/WordpressAutoScalingGroup/WordpressAutoScalingGroup/ScalingPolicyCpuScaling",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "WordpressEc2RdsStack/WordpressAutoScalingGroup/WordpressAutoScalingGroup/ScalingPolicyCpuScaling/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::AutoScaling::ScalingPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "autoScalingGroupName": {
+                              "Ref": "WordpressAutoScalingGroupASGC96E9968"
+                            },
+                            "policyType": "TargetTrackingScaling",
+                            "targetTrackingConfiguration": {
+                              "predefinedMetricSpecification": {
+                                "predefinedMetricType": "ASGAverageCPUUtilization"
+                              },
+                              "targetValue": 70
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_autoscaling.CfnScalingPolicy",
+                          "version": "2.118.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_autoscaling.TargetTrackingScalingPolicy",
                       "version": "2.118.0"
                     }
                   }
@@ -1801,17 +975,456 @@
               "version": "2.118.0"
             }
           },
+          "MySQLRdsInstance": {
+            "id": "MySQLRdsInstance",
+            "path": "WordpressEc2RdsStack/MySQLRdsInstance",
+            "children": {
+              "DbSecret": {
+                "id": "DbSecret",
+                "path": "WordpressEc2RdsStack/MySQLRdsInstance/DbSecret",
+                "children": {
+                  "Attachment": {
+                    "id": "Attachment",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/DbSecret/Attachment",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/DbSecret/Attachment/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::SecretsManager::SecretTargetAttachment",
+                          "aws:cdk:cloudformation:props": {
+                            "secretId": "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL",
+                            "targetId": {
+                              "Ref": "MySQLRdsInstancewordpressec22rdsdevMySqlRDSInstanceE441A188"
+                            },
+                            "targetType": "AWS::RDS::DBInstance"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_secretsmanager.CfnSecretTargetAttachment",
+                          "version": "2.118.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_secretsmanager.SecretTargetAttachment",
+                      "version": "2.118.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.118.0"
+                }
+              },
+              "wordpress-ec22-rds-dev-rds-sg": {
+                "id": "wordpress-ec22-rds-dev-rds-sg",
+                "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-sg",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-sg/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "groupDescription": "Security group for RDS instance",
+                        "securityGroupEgress": [
+                          {
+                            "cidrIp": "0.0.0.0/0",
+                            "description": "Allow all outbound traffic by default",
+                            "ipProtocol": "-1"
+                          }
+                        ],
+                        "securityGroupIngress": [
+                          {
+                            "sourceSecurityGroupId": {
+                              "Fn::GetAtt": [
+                                "WordpressAutoScalingGroupwordpressinstancessg40AE805B",
+                                "GroupId"
+                              ]
+                            },
+                            "ipProtocol": "tcp",
+                            "fromPort": 3306,
+                            "toPort": 3306,
+                            "description": "Allow MySQL access from EC2 instances"
+                          }
+                        ],
+                        "vpcId": {
+                          "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                      "version": "2.118.0"
+                    }
+                  },
+                  "from WordpressEc2RdsStackMySQLRdsInstancewordpressec22rdsdevrdssgAC0D862C:{IndirectPort}": {
+                    "id": "from WordpressEc2RdsStackMySQLRdsInstancewordpressec22rdsdevrdssgAC0D862C:{IndirectPort}",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-sg/from WordpressEc2RdsStackMySQLRdsInstancewordpressec22rdsdevrdssgAC0D862C:{IndirectPort}",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroupIngress",
+                      "aws:cdk:cloudformation:props": {
+                        "description": "Allow connections to the database Instance from the Proxy",
+                        "fromPort": {
+                          "Fn::GetAtt": [
+                            "MySQLRdsInstancewordpressec22rdsdevMySqlRDSInstanceE441A188",
+                            "Endpoint.Port"
+                          ]
+                        },
+                        "groupId": {
+                          "Fn::GetAtt": [
+                            "MySQLRdsInstancewordpressec22rdsdevrdssg2AAD38A5",
+                            "GroupId"
+                          ]
+                        },
+                        "ipProtocol": "tcp",
+                        "sourceSecurityGroupId": {
+                          "Fn::GetAtt": [
+                            "MySQLRdsInstancewordpressec22rdsdevrdssg2AAD38A5",
+                            "GroupId"
+                          ]
+                        },
+                        "toPort": {
+                          "Fn::GetAtt": [
+                            "MySQLRdsInstancewordpressec22rdsdevMySqlRDSInstanceE441A188",
+                            "Endpoint.Port"
+                          ]
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroupIngress",
+                      "version": "2.118.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+                  "version": "2.118.0"
+                }
+              },
+              "wordpress-ec22-rds-dev-MySqlRDSInstance": {
+                "id": "wordpress-ec22-rds-dev-MySqlRDSInstance",
+                "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-MySqlRDSInstance",
+                "children": {
+                  "SubnetGroup": {
+                    "id": "SubnetGroup",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-MySqlRDSInstance/SubnetGroup",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-MySqlRDSInstance/SubnetGroup/Default",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::RDS::DBSubnetGroup",
+                          "aws:cdk:cloudformation:props": {
+                            "dbSubnetGroupDescription": "Subnet group for wordpress-ec22-rds-dev-MySqlRDSInstance database",
+                            "subnetIds": [
+                              {
+                                "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet1Subnet35967B6F"
+                              },
+                              {
+                                "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet2SubnetD9D1F041"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_rds.CfnDBSubnetGroup",
+                          "version": "2.118.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_rds.SubnetGroup",
+                      "version": "2.118.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-MySqlRDSInstance/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBInstance",
+                      "aws:cdk:cloudformation:props": {
+                        "allocatedStorage": "20",
+                        "backupRetentionPeriod": 7,
+                        "copyTagsToSnapshot": true,
+                        "dbInstanceClass": "db.t2.micro",
+                        "dbSubnetGroupName": {
+                          "Ref": "MySQLRdsInstancewordpressec22rdsdevMySqlRDSInstanceSubnetGroup48CCC66E"
+                        },
+                        "deletionProtection": false,
+                        "engine": "mysql",
+                        "engineVersion": "8.0",
+                        "masterUsername": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL:SecretString:username::}}",
+                        "masterUserPassword": "{{resolve:secretsmanager:arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL:SecretString:password::}}",
+                        "publiclyAccessible": false,
+                        "storageType": "gp2",
+                        "vpcSecurityGroups": [
+                          {
+                            "Fn::GetAtt": [
+                              "MySQLRdsInstancewordpressec22rdsdevrdssg2AAD38A5",
+                              "GroupId"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_rds.CfnDBInstance",
+                      "version": "2.118.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.DatabaseInstance",
+                  "version": "2.118.0"
+                }
+              },
+              "wordpress-ec22-rds-dev-rds-proxy": {
+                "id": "wordpress-ec22-rds-dev-rds-proxy",
+                "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy",
+                "children": {
+                  "IAMRole": {
+                    "id": "IAMRole",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/IAMRole",
+                    "children": {
+                      "ImportIAMRole": {
+                        "id": "ImportIAMRole",
+                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/IAMRole/ImportIAMRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.118.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/IAMRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "rds.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.118.0"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/IAMRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/IAMRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "secretsmanager:DescribeSecret",
+                                        "secretsmanager:GetSecretValue"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL"
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "MySQLRdsInstancewordpressec22rdsdevrdsproxyIAMRoleDefaultPolicy03540A2E",
+                                "roles": [
+                                  {
+                                    "Ref": "MySQLRdsInstancewordpressec22rdsdevrdsproxyIAMRoleD315C3DA"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.118.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.118.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.118.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBProxy",
+                      "aws:cdk:cloudformation:props": {
+                        "auth": [
+                          {
+                            "authScheme": "SECRETS",
+                            "iamAuth": "DISABLED",
+                            "secretArn": "arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL"
+                          }
+                        ],
+                        "dbProxyName": "WordpressEc2RdsStackMySQLRordpressec22rdsdevrdsproxy76063ECF",
+                        "debugLogging": true,
+                        "engineFamily": "MYSQL",
+                        "idleClientTimeout": 600,
+                        "requireTls": false,
+                        "roleArn": {
+                          "Fn::GetAtt": [
+                            "MySQLRdsInstancewordpressec22rdsdevrdsproxyIAMRoleD315C3DA",
+                            "Arn"
+                          ]
+                        },
+                        "vpcSecurityGroupIds": [
+                          {
+                            "Fn::GetAtt": [
+                              "MySQLRdsInstancewordpressec22rdsdevrdssg2AAD38A5",
+                              "GroupId"
+                            ]
+                          }
+                        ],
+                        "vpcSubnetIds": [
+                          {
+                            "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet1Subnet35967B6F"
+                          },
+                          {
+                            "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevisolatedSubnet2SubnetD9D1F041"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_rds.CfnDBProxy",
+                      "version": "2.118.0"
+                    }
+                  },
+                  "ProxyTargetGroup": {
+                    "id": "ProxyTargetGroup",
+                    "path": "WordpressEc2RdsStack/MySQLRdsInstance/wordpress-ec22-rds-dev-rds-proxy/ProxyTargetGroup",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::RDS::DBProxyTargetGroup",
+                      "aws:cdk:cloudformation:props": {
+                        "connectionPoolConfigurationInfo": {},
+                        "dbInstanceIdentifiers": [
+                          {
+                            "Ref": "MySQLRdsInstancewordpressec22rdsdevMySqlRDSInstanceE441A188"
+                          }
+                        ],
+                        "dbProxyName": {
+                          "Ref": "MySQLRdsInstancewordpressec22rdsdevrdsproxy1596D2B2"
+                        },
+                        "targetGroupName": "default"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_rds.CfnDBProxyTargetGroup",
+                      "version": "2.118.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_rds.DatabaseProxy",
+                  "version": "2.118.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.3.0"
+            }
+          },
+          "RdsProxyEndpointParameter": {
+            "id": "RdsProxyEndpointParameter",
+            "path": "WordpressEc2RdsStack/RdsProxyEndpointParameter",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "WordpressEc2RdsStack/RdsProxyEndpointParameter/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "/myapp/rds/proxy-endpoint",
+                    "type": "String",
+                    "value": {
+                      "Fn::GetAtt": [
+                        "MySQLRdsInstancewordpressec22rdsdevrdsproxy1596D2B2",
+                        "Endpoint"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ssm.CfnParameter",
+                  "version": "2.118.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ssm.StringParameter",
+              "version": "2.118.0"
+            }
+          },
+          "RdsProxySGIdParameter": {
+            "id": "RdsProxySGIdParameter",
+            "path": "WordpressEc2RdsStack/RdsProxySGIdParameter",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "WordpressEc2RdsStack/RdsProxySGIdParameter/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "/myapp/rds/proxy-sg-id",
+                    "type": "String",
+                    "value": {
+                      "Fn::GetAtt": [
+                        "MySQLRdsInstancewordpressec22rdsdevrdssg2AAD38A5",
+                        "GroupId"
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ssm.CfnParameter",
+                  "version": "2.118.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ssm.StringParameter",
+              "version": "2.118.0"
+            }
+          },
           "WordpressApplicationLoadBalancer": {
             "id": "WordpressApplicationLoadBalancer",
             "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer",
             "children": {
-              "wordpress-ec22-rds-devops-ALBSecurityGroup": {
-                "id": "wordpress-ec22-rds-devops-ALBSecurityGroup",
-                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALBSecurityGroup",
+              "wordpress-ec22-rds-dev-ALBSecurityGroup": {
+                "id": "wordpress-ec22-rds-dev-ALBSecurityGroup",
+                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALBSecurityGroup",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALBSecurityGroup/Resource",
+                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALBSecurityGroup/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
                       "aws:cdk:cloudformation:props": {
@@ -1840,7 +1453,7 @@
                           }
                         ],
                         "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                          "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                         }
                       }
                     },
@@ -1855,13 +1468,13 @@
                   "version": "2.118.0"
                 }
               },
-              "wordpress-ec22-rds-devops-ALB": {
-                "id": "wordpress-ec22-rds-devops-ALB",
-                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALB",
+              "wordpress-ec22-rds-dev-ALB": {
+                "id": "wordpress-ec22-rds-dev-ALB",
+                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALB",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALB/Resource",
+                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALB/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
                       "aws:cdk:cloudformation:props": {
@@ -1871,22 +1484,22 @@
                             "value": "false"
                           }
                         ],
-                        "name": "wordpress-ec22-rds-devops-alb",
+                        "name": "wordpress-ec22-rds-dev-alb",
                         "scheme": "internet-facing",
                         "securityGroups": [
                           {
                             "Fn::GetAtt": [
-                              "WordpressApplicationLoadBalancerwordpressec22rdsdevopsALBSecurityGroup576EFF9B",
+                              "WordpressApplicationLoadBalancerwordpressec22rdsdevALBSecurityGroup414BACD9",
                               "GroupId"
                             ]
                           }
                         ],
                         "subnets": [
                           {
-                            "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet1SubnetD17D304F"
+                            "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet1Subnet9A309B10"
                           },
                           {
-                            "Ref": "CustomVPCwordpressec22rdsdevopsvpcwordpressec22rdsdevopspublicSubnet2SubnetB38C0CA8"
+                            "Ref": "CustomVPCwordpressec22rdsdevvpcwordpressec22rdsdevpublicSubnet2SubnetE2428331"
                           }
                         ],
                         "type": "application"
@@ -1897,13 +1510,13 @@
                       "version": "2.118.0"
                     }
                   },
-                  "wordpress-ec22-rds-devops-Listener": {
-                    "id": "wordpress-ec22-rds-devops-Listener",
-                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALB/wordpress-ec22-rds-devops-Listener",
+                  "wordpress-ec22-rds-dev-Listener": {
+                    "id": "wordpress-ec22-rds-dev-Listener",
+                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALB/wordpress-ec22-rds-dev-Listener",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALB/wordpress-ec22-rds-devops-Listener/Resource",
+                        "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALB/wordpress-ec22-rds-dev-Listener/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::Listener",
                           "aws:cdk:cloudformation:props": {
@@ -1911,12 +1524,12 @@
                               {
                                 "type": "forward",
                                 "targetGroupArn": {
-                                  "Ref": "WordpressApplicationLoadBalancerwordpressec22rdsdevopsTargetGroupBE70F932"
+                                  "Ref": "WordpressApplicationLoadBalancerwordpressec22rdsdevTargetGroupCFAF664D"
                                 }
                               }
                             ],
                             "loadBalancerArn": {
-                              "Ref": "WordpressApplicationLoadBalancerwordpressec22rdsdevopsALBDF14DE5A"
+                              "Ref": "WordpressApplicationLoadBalancerwordpressec22rdsdevALB49DC3611"
                             },
                             "port": 80,
                             "protocol": "HTTP"
@@ -1939,13 +1552,13 @@
                   "version": "2.118.0"
                 }
               },
-              "wordpress-ec22-rds-devops-TargetGroup": {
-                "id": "wordpress-ec22-rds-devops-TargetGroup",
-                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-TargetGroup",
+              "wordpress-ec22-rds-dev-TargetGroup": {
+                "id": "wordpress-ec22-rds-dev-TargetGroup",
+                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-TargetGroup",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-TargetGroup/Resource",
+                    "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-TargetGroup/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::ElasticLoadBalancingV2::TargetGroup",
                       "aws:cdk:cloudformation:props": {
@@ -1965,7 +1578,7 @@
                         "targetType": "instance",
                         "unhealthyThresholdCount": 5,
                         "vpcId": {
-                          "Ref": "CustomVPCwordpressec22rdsdevopsvpcBA1ACA8D"
+                          "Ref": "CustomVPCwordpressec22rdsdevvpcCEE0383D"
                         }
                       }
                     },
@@ -1980,9 +1593,9 @@
                   "version": "2.118.0"
                 }
               },
-              "wordpress-ec22-rds-devops-ALB-DNS-Name": {
-                "id": "wordpress-ec22-rds-devops-ALB-DNS-Name",
-                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-devops-ALB-DNS-Name",
+              "wordpress-ec22-rds-dev-ALB-DNS-Name": {
+                "id": "wordpress-ec22-rds-dev-ALB-DNS-Name",
+                "path": "WordpressEc2RdsStack/WordpressApplicationLoadBalancer/wordpress-ec22-rds-dev-ALB-DNS-Name",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.118.0"

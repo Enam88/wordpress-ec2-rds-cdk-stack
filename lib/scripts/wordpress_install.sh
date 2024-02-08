@@ -1,210 +1,80 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Author: @11808s8 - Adriano
-# Email: adrianogsss@gmail.com
-# Version: 1.1.0 - 07/04/2020
-#
-# @TODO: Refactor this, breaking parts into modules
-# and include more comments/User feedbacks
-#
-# @TODO: Remove hardcoded credentials
-# 
-# !READ THIS! you should change the root credentials
-#  and wordpress credentials accordingly.
-#  This script needs to be refined in order to be
-#  reproducible on a production environment.
-#
-# YOU CAN UPLOAD THIS ON YOUR USER DATA CONFIG FOR LAUNCHING AN INSTANCE
-# NO NEED TO RUN IT INSIDE YOUR INSTANCE !!!
-# (but you can run this inside your AWS EC2 instance if you want lol who am I to judge)
-#
+sudo yum -y update
+sudo yum -y install httpd php php-cli php-mysql jq mysql mysqladmin
 
-sudo yum update -y
+# Fetch RDS Proxy Endpoint and Security Group ID from Parameter Store
+DB_HOST=$(aws ssm get-parameter --name '/myapp/rds/proxy-endpoint' --query 'Parameter.Value' --output text)
+DB_PROXY_SG_ID=$(aws ssm get-parameter --name '/myapp/rds/proxy-sg-id' --query 'Parameter.Value' --output text)
 
-# Install necessary packages
+# Example commands to configure the application
+echo "DB_HOST=${DB_HOST}" >> /etc/myapp.conf
+# More setup and configuration commands
 
-sudo yum install mariadb-server.x86_64 -y
-sudo amazon-linux-extras install nginx1
-sudo amazon-linux-extras install php7.2
-
-# Start the processes
-sudo systemctl enable mariadb 
-sudo systemctl start mariadb 
-sudo systemctl enable nginx 
-sudo systemctl start nginx 
-sudo systemctl enable php-fpm 
-sudo systemctl start php-fpm 
-
-# Configure the processes to start when the instance boots up
-sudo chkconfig php-fpm on
-sudo chkconfig nginx on
-sudo chkconfig mariadb on
-
-# Switch the APACHE lines on php-fpm (default ones) for nginx specific ones
-sudo sed -i 's/user = apache/user = nginx/' /etc/php-fpm.d/www.conf
-sudo sed -i 's/group = apache/group = nginx/' /etc/php-fpm.d/www.conf
-
-# Create the www dir
-sudo mkdir /var/www/
-
-# Permission for us to download wordpress
-sudo chown ec2-user:ec2-user /var/www/
-cd /var/www/
-
-# Download and extraction of wordpress
-wget http://wordpress.org/latest.tar.gz
-tar -xvf latest.tar.gz
-rm latest.tar.gz
-cd /var/
-
-# Permission to nginx to use /var/www/
-sudo chown -R nginx:nginx /var/www/
-
-sudo systemctl stop mariadb
-sudo mysql_install_db
-sudo systemctl start mariadb
+# Retrieve DB credentials from AWS Secrets Manager
+DB_CREDENTIALS=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-3:943240599753:secret:/rds/mysql/credentials-tg3CzL --query SecretString --output text --region eu-west-3)
+DB_USER=$(echo $DB_CREDENTIALS | jq -r .username)
+DB_PASS=$(echo $DB_CREDENTIALS | jq -r .password)
+DB_HOST="wordpressec2rdsstackmysqlrordpressec22rdsdevrdsproxy76063ecf.proxy-ctolmm4tg8qx.eu-west-3.rds.amazonaws.com"
+DB_PORT=$(echo $DB_CREDENTIALS | jq -r .port)
 
 
-# Deprecated! 
-#sudo mysql_secure_installation
 
 
-# Adapted from here: https://bertvv.github.io/notes-to-self/2015/11/16/automating-mysql_secure_installation/
+sudo amazon-linux-extras install php7.4 -y
+sudo service httpd start
 
-mysql --user=root <<EOF
-USE mysql;
-UPDATE user SET password=PASSWORD('root') WHERE User='root' AND Host = 'localhost';
-DELETE FROM mysql.user WHERE User='';
-DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-DROP DATABASE IF EXISTS test;
-DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+
+# Install WordPress CLI
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+
+WP_CREDENTIALS=$(aws secretsmanager get-secret-value --secret-id arn:aws:secretsmanager:eu-west-3:943240599753:secret:WordpressAdminCredentials-bHpFRX --query SecretString --output text --region eu-west-3)
+WP_ADMIN_USER=$(echo $WP_CREDENTIALS | jq -r .username)              # Replace with your admin username
+WP_ADMIN_PASSWORD=$(echo $WP_CREDENTIALS | jq -r .password)      # Replace with your admin password
+WP_ADMIN_EMAIL==$(echo $WP_CREDENTIALS | jq -r .email)   # Replace with your admin email
+
+# Set up WordPress
+WP_SITE_INSTALL_PATH="/var/www/html" # Replace with your actual installation path
+WP_SITE_TITLE="Team-3 WordPress Site"    # Replace with your site title
+WP_ADMIN_USER="admin"                # Replace with your admin username
+WP_ADMIN_PASSWORD="password8888#$%"         # Replace with your admin password
+WP_ADMIN_EMAIL="admin@example.com"   # Replace with your admin email
+WP_SITE_BASE_DOMAIN="example.com"  # Replace 'example.com' with your actual domain or IP address later
+
+
+# Set the MYSQL_PWD environment variable for the current session
+export MYSQL_PWD=$DB_PASS
+
+mysql --user=DB_USER --password=DB_PASS --host=wordpressec2rdsstackmysqlrordpressec22rdsdevrdsproxy76063ecf.proxy-ctolmm4tg8qx.eu-west-3.rds.amazonaws.com ssl-mode=REQUIRED DB_NAME
+
+
+# Create database and grant privileges using MySQL commands
+mysql -h $DB_HOST -u $DB_USER -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+mysql -h $DB_HOST -u $DB_USER -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%'; FLUSH PRIVILEGES;"
+
+# Unset the MYSQL_PWD environment variable after use
+# unset MYSQL_PWD
+
+CREATE DATABASE wordpress;
+GRANT ALL PRIVILEGES ON wordpress.* TO 'admin'@'%';
 FLUSH PRIVILEGES;
-EOF
+exit
 
-# ---
+# Download WP Core
+sudo /usr/local/bin/wp core download --path=$WP_SITE_INSTALL_PATH
 
-# CREATING THE DB
-sudo mysqladmin -u 'root' -proot create 'wordpress'
-# cd /tmp/
+# Generate the wp-config.php file
+sudo /usr/local/bin/wp core config --path=$WP_SITE_INSTALL_PATH --dbname=wordpress --dbuser=$DB_USER --dbpass=$DB_PASS --dbhost=$DB_HOST:$DB_PORT --extra-php <<PHP
+define('WP_DEBUG', true);
+define('WP_DEBUG_LOG', true);
+define('WP_DEBUG_DISPLAY', true);
+define('WP_MEMORY_LIMIT', '256M');
+PHP
 
-# ---- Deprecated ----
-# CREATING THE WORDPRESS USER AND PASSWORD
-# echo 'CREATE USER wordpress@localhost IDENTIFIED BY "wordpresspass";
-# GRANT ALL PRIVILEGES ON wordpress.* to wordpress@localhost;' > mysql_wordpress_setup.sql
-# sudo mysql -u root -proot wordpress < mysql_wordpress_setup.sql
-# rm mysql_wordpress_setup.sql
-# ---- ---------- ----
+# Install WordPress
+sudo /usr/local/bin/wp core install --path=$WP_SITE_INSTALL_PATH --url="http://localhost" --title="$WP_SITE_TITLE" --admin_user="$WP_ADMIN_USER" --admin_password="$WP_ADMIN_PASSWORD" --admin_email="$WP_ADMIN_EMAIL"
 
-mysql --user=root -proot <<EOF
-CREATE USER wordpress@localhost IDENTIFIED BY "wordpresspass";
-GRANT ALL PRIVILEGES ON wordpress.* to wordpress@localhost;
-EOF
+sudo service httpd restart
 
-# ---
-
-# NGINX configuration for the server block! (vhost)
-
-cd /tmp/
-sudo echo "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    server_name wordpress;
-    root /var/www/wordpress;
-    index index.php;
-    # Load configuration files for the default server block.
-    include /etc/nginx/default.d/*.conf;
-}" > wordpress.conf
-sudo chown root:root wordpress.conf
-sudo chmod 644 wordpress.conf
-sudo mv wordpress.conf /etc/nginx/conf.d/
-
-
-sudo echo "
-# For more information on configuration, see:
-#   * Official English Documentation: http://nginx.org/en/docs/
-#   * Official Russian Documentation: http://nginx.org/ru/docs/
-user nginx;
-worker_processes auto;
-error_log /var/log/nginx/error.log;
-pid /run/nginx.pid;
-# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
-include /usr/share/nginx/modules/*.conf;
-events {
-    worker_connections 1024;
-}
-http {
-    log_format  main  '$remote_addr - $remote_user [$time_local] \"$request\" '
-                      '$status $body_bytes_sent \"$http_referer\" '
-                      '\"$http_user_agent\" \"$http_x_forwarded_for\"';
-    access_log  /var/log/nginx/access.log  main;
-    sendfile            on;
-    tcp_nopush          on;
-    tcp_nodelay         on;
-    keepalive_timeout   65;
-    types_hash_max_size 2048;
-    include             /etc/nginx/mime.types;
-    default_type        application/octet-stream;
-    # Load modular configuration files from the /etc/nginx/conf.d directory.
-    # See http://nginx.org/en/docs/ngx_core_module.html#include
-    # for more information.
-    include /etc/nginx/conf.d/*.conf;
-#    server {
-#        listen       80 default_server;
-#        listen       [::]:80 default_server;
-#        server_name  _;
-#        root         /usr/share/nginx/html;
-#
-#        # Load configuration files for the default server block.
-#        include /etc/nginx/default.d/*.conf;
-#
-#        location / {
-#        }
-#
-#        error_page 404 /404.html;
-#            location = /40x.html {
-#        }
-#
-#        error_page 500 502 503 504 /50x.html;
-#            location = /50x.html {
-#        }
-#    }
-# Settings for a TLS enabled server.
-#
-#    server {
-#        listen       443 ssl http2 default_server;
-#        listen       [::]:443 ssl http2 default_server;
-#        server_name  _;
-#        root         /usr/share/nginx/html;
-#
-#        ssl_certificate \"/etc/pki/nginx/server.crt\";
-#        ssl_certificate_key \"/etc/pki/nginx/private/server.key\";
-#        ssl_session_cache shared:SSL:1m;
-#        ssl_session_timeout  10m;
-#        ssl_ciphers PROFILE=SYSTEM;
-#        ssl_prefer_server_ciphers on;
-#
-#        # Load configuration files for the default server block.
-#        include /etc/nginx/default.d/*.conf;
-#
-#        location / {
-#        }
-#
-#        error_page 404 /404.html;
-#            location = /40x.html {
-#        }
-#
-#        error_page 500 502 503 504 /50x.html;
-#            location = /50x.html {
-#        }
-#    }
-}
-" > nginx.conf
-
-sudo chown root:root nginx.conf
-sudo chmod 644 nginx.conf
-sudo mv nginx.conf /etc/nginx/
-
-# The cherry on top
-sudo service nginx restart
-sudo service php-fpm restart
-sudo service mariadb restart

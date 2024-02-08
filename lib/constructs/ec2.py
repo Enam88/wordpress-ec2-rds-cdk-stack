@@ -1,5 +1,3 @@
-
-
 # ec2.py
 import aws_cdk as cdk
 from aws_cdk import aws_ec2 as ec2
@@ -39,16 +37,8 @@ class WordpressAutoScalingGroup(Construct):
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(443), "Allow HTTPS access from anywhere")
         security_group.add_ingress_rule(ec2.Peer.any_ipv4(), ec2.Port.tcp(22), "Allow SSH access")
 
-        # User Data Script to configure the application with the RDS Proxy Endpoint
-        user_data_script = """#!/bin/bash
-        # Fetch RDS Proxy Endpoint and Security Group ID from Parameter Store
-        DB_HOST=$(aws ssm get-parameter --name '/myapp/rds/proxy-endpoint' --query 'Parameter.Value' --output text)
-        DB_PROXY_SG_ID=$(aws ssm get-parameter --name '/myapp/rds/proxy-sg-id' --query 'Parameter.Value' --output text)
-
-        # Example commands to configure the application
-        echo "DB_HOST=${DB_HOST}" >> /etc/myapp.conf
-        # More setup and configuration commands
-        """
+        with open(".\lib\scripts\wordpress_install.sh", 'r') as user_data_file:
+            user_data_script = user_data_file.read()
 
         # Create an Auto Scaling Group for WordPress instances
         asg = autoscaling.AutoScalingGroup(
@@ -67,6 +57,9 @@ class WordpressAutoScalingGroup(Construct):
             vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
             associate_public_ip_address=True,
         )
+
+        asg.scale_on_cpu_utilization("CpuScaling", target_utilization_percent=70)
+
 
         # Expose the security group and auto scaling group
         self.security_group = security_group

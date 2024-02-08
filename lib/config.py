@@ -1,5 +1,4 @@
 
-
 import os
 from dotenv import load_dotenv
 
@@ -16,6 +15,7 @@ aws_account_number = os.environ.get('AWS_ACCOUNT_NUMBER')
 aws_region = os.environ.get('AWS_REGION')
 deployed_by = os.environ.get('DEPLOYED_BY', os.environ.get('USER'))
 project_name = f'wordpress-ec22-rds-{stage}'
+
 
 # Additional WordPress configuration
 wp_db_name = os.environ.get('WP_DB_NAME', 'wordpress_db')
