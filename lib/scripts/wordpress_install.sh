@@ -4,11 +4,11 @@ sudo yum -y update
 sudo yum -y install httpd php php-cli php-mysql jq mysql mysqladmin
 
 # Fetch RDS Proxy Endpoint and Security Group ID from Parameter Store
-DB_HOST=$(aws ssm get-parameter --name '/myapp/rds/proxy-endpoint' --query 'Parameter.Value' --output text)
-DB_PROXY_SG_ID=$(aws ssm get-parameter --name '/myapp/rds/proxy-sg-id' --query 'Parameter.Value' --output text)
+# DB_HOST=$(aws ssm get-parameter --name '/myapp/rds/proxy-endpoint' --query 'Parameter.Value' --output text)
+# DB_PROXY_SG_ID=$(aws ssm get-parameter --name '/myapp/rds/proxy-sg-id' --query 'Parameter.Value' --output text)
 
 # Example commands to configure the application
-echo "DB_HOST=${DB_HOST}" >> /etc/myapp.conf
+# echo "DB_HOST=${DB_HOST}" >> /etc/myapp.conf
 # More setup and configuration commands
 
 # Retrieve DB credentials from AWS Secrets Manager
@@ -17,6 +17,8 @@ DB_USER=$(echo $DB_CREDENTIALS | jq -r .username)
 DB_PASS=$(echo $DB_CREDENTIALS | jq -r .password)
 DB_HOST="wordpressec2rdsstackmysqlrordpressec22rdsdevrdsproxy76063ecf.proxy-ctolmm4tg8qx.eu-west-3.rds.amazonaws.com"
 DB_PORT=$(echo $DB_CREDENTIALS | jq -r .port)
+DB_NAME="wordpress"  # The database name should be defined here
+
 
 
 
@@ -38,10 +40,9 @@ WP_ADMIN_EMAIL==$(echo $WP_CREDENTIALS | jq -r .email)   # Replace with your adm
 # Set up WordPress
 WP_SITE_INSTALL_PATH="/var/www/html" # Replace with your actual installation path
 WP_SITE_TITLE="Team-3 WordPress Site"    # Replace with your site title
-WP_ADMIN_USER="admin"                # Replace with your admin username
-WP_ADMIN_PASSWORD="password8888#$%"         # Replace with your admin password
-WP_ADMIN_EMAIL="admin@example.com"   # Replace with your admin email
 WP_SITE_BASE_DOMAIN="example.com"  # Replace 'example.com' with your actual domain or IP address later
+
+# DB_NAME="wordpress"  # The database name should be defined here
 
 
 # Set the MYSQL_PWD environment variable for the current session
@@ -57,10 +58,7 @@ mysql -h $DB_HOST -u $DB_USER -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USE
 # Unset the MYSQL_PWD environment variable after use
 # unset MYSQL_PWD
 
-CREATE DATABASE wordpress;
-GRANT ALL PRIVILEGES ON wordpress.* TO 'admin'@'%';
-FLUSH PRIVILEGES;
-exit
+
 
 # Download WP Core
 sudo /usr/local/bin/wp core download --path=$WP_SITE_INSTALL_PATH

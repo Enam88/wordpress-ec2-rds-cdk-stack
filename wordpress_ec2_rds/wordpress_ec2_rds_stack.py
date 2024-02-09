@@ -48,7 +48,7 @@ class WordpressEc2RdsStack(Stack):
 
  
 
-        # # Instantiate the WordpressApplicationLoadBalancer
+        # Instantiate the WordpressApplicationLoadBalancer
         wordpress_alb = WordpressApplicationLoadBalancer(
             self, 
             "WordpressApplicationLoadBalancer", 

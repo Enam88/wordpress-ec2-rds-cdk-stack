@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/7782b562d4d16d8493aa3ec8518a483535ae502927d79be13f1e91e70b5eb635.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1cb32fd0ad5212abdcb9d47ede957079bae00e03fb043caa5bfe709fb3d59397.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -177,14 +177,14 @@
             "type": "aws:cdk:warning",
             "data": "desiredCapacity has been configured. Be aware this will reset the size of your AutoScalingGroup on every deployment. See https://github.com/aws/aws-cdk/issues/5215 [ack: @aws-cdk/aws-autoscaling:desiredCapacitySet]",
             "trace": [
-              "Annotations.addMessage (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-QB7kuX\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
-              "Annotations.addWarningV2 (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-QB7kuX\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
-              "new AutoScalingGroup (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-QB7kuX\\node_modules\\aws-cdk-lib\\aws-autoscaling\\lib\\auto-scaling-group.js:1:16025)",
-              "Kernel._Kernel_create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:10108:25)",
-              "Kernel.create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:9779:93)",
-              "KernelHost.processRequest (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:11699:36)",
-              "KernelHost.run (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:11659:22)",
-              "Immediate._onImmediate (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmpkkzzxo10\\lib\\program.js:11660:46)",
+              "Annotations.addMessage (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-mdK75y\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addWarningV2 (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-mdK75y\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:825)",
+              "new AutoScalingGroup (C:\\Users\\eakli\\AppData\\Local\\Temp\\jsii-kernel-mdK75y\\node_modules\\aws-cdk-lib\\aws-autoscaling\\lib\\auto-scaling-group.js:1:16025)",
+              "Kernel._Kernel_create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmptnfg82s7\\lib\\program.js:10108:25)",
+              "Kernel.create (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmptnfg82s7\\lib\\program.js:9779:93)",
+              "KernelHost.processRequest (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmptnfg82s7\\lib\\program.js:11699:36)",
+              "KernelHost.run (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmptnfg82s7\\lib\\program.js:11659:22)",
+              "Immediate._onImmediate (C:\\Users\\eakli\\AppData\\Local\\Temp\\tmptnfg82s7\\lib\\program.js:11660:46)",
               "process.processImmediate (node:internal/timers:478:21)"
             ]
           }
